@@ -1,0 +1,19 @@
+{
+  "model": "iALS",
+  "preference": "p_ui = 1 for fit rating >= 4; otherwise 0",
+  "confidence": "c_ui = 1 + alpha * p_ui, including c=1 on unobserved pairs",
+  "regularization": "lambda * (sum user squared norms + sum item squared norms); not degree-scaled",
+  "grid": {
+    "n_factors": [16, 32, 64],
+    "alpha": [10.0, 40.0],
+    "regularization": [0.1, 1.0]
+  },
+  "n_iterations": 15,
+  "seed": 42,
+  "solver_batch_size": 128,
+  "budget": 12,
+  "selection": "maximum validation macro NDCG@10",
+  "tie_break": "fewer factors, then smaller alpha, then larger regularization",
+  "early_stopping": false,
+  "test_evaluated": false
+}

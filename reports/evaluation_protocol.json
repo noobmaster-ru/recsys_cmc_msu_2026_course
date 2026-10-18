@@ -1,0 +1,130 @@
+{
+  "candidates": "entire fit catalog minus all items seen by that user in fit; no sampling",
+  "catalog": "all items observed in the stage fit, regardless of rating",
+  "cold_start": "excluded from primary metrics; counts and coverage reported; retained in split files",
+  "confidence_intervals": {
+    "confidence": 0.95,
+    "method": "paired user bootstrap",
+    "resamples": 2000,
+    "seed": 42
+  },
+  "diagnostics": [
+    "catalog coverage@10",
+    "fit-history slices 1-4 / 5-9 / 10+",
+    "fit-popularity slices"
+  ],
+  "evaluation_diagnostics": {
+    "test": {
+      "all_positive_interactions": 40470,
+      "catalog_items": 16721,
+      "cold_status_counts": {
+        "known_user_known_item": 29488,
+        "known_user_new_item": 3797,
+        "new_user_known_item": 15397,
+        "new_user_new_item": 626
+      },
+      "eligible_interactions": 29488,
+      "eligible_users": 11339,
+      "evaluation_users": 9521,
+      "fit_interactions": 403681,
+      "fit_users": 48349,
+      "holdout_interactions": 49308,
+      "holdout_users": 14735,
+      "known_users_without_available_relevance": 3017,
+      "minimum_candidate_count": 16246,
+      "positive_interaction_coverage": 0.579540400296516,
+      "relevance_size_median": 2.0,
+      "relevant_interactions": 23454,
+      "users_without_positive_fit_history": 317
+    },
+    "validation": {
+      "all_positive_interactions": 59779,
+      "catalog_items": 15578,
+      "cold_status_counts": {
+        "known_user_known_item": 31860,
+        "known_user_new_item": 12647,
+        "new_user_known_item": 23921,
+        "new_user_new_item": 4302
+      },
+      "eligible_interactions": 31860,
+      "eligible_users": 11905,
+      "evaluation_users": 10207,
+      "fit_interactions": 330951,
+      "fit_users": 43463,
+      "holdout_interactions": 72730,
+      "holdout_users": 19776,
+      "known_users_without_available_relevance": 4683,
+      "minimum_candidate_count": 14808,
+      "positive_interaction_coverage": 0.42901353318054836,
+      "relevance_size_median": 2.0,
+      "relevant_interactions": 25646,
+      "users_without_positive_fit_history": 513
+    }
+  },
+  "evaluation_users": "known in stage fit, >=1 available relevant holdout item, >=10 candidates",
+  "feature_preprocessing": "fit only; rebuild on train+validation for final test",
+  "input_checksums": {
+    "data/processed/interactions.csv.gz": {
+      "bytes": 4904100,
+      "sha256": "69f17b05dba32fd7abb2ba7557c17aef4de58d62a8247b413bd92c9e79d5f0e7"
+    },
+    "data/processed/items.jsonl.gz": {
+      "bytes": 8769755,
+      "sha256": "f48c350d3142530978f3a23beda57f207033e201d43b443011efaf7f61d49edb"
+    }
+  },
+  "k": 10,
+  "limitations": [
+    "source and restored 5-core use full-period cohort selection",
+    "catalog metadata are crawl-time snapshots; historical availability unverified",
+    "review timestamp is day-resolution feedback, not purchase time",
+    "unequal validation/test horizons and temporal drift",
+    "warm-start observed-rating retrieval, not causal online recommendation quality"
+  ],
+  "missing_personal_scores": "if personalization is unavailable or any candidate score is non-finite, replace the entire user ranking by descending count of rating>=4 fit events; ties by item_id; never drop users",
+  "primary_metric": "macro NDCG@10",
+  "query_time": "start of each holdout window; frozen history throughout the window",
+  "relevance": {
+    "binary": true,
+    "rating_at_least": 4
+  },
+  "secondary_metric": "macro Recall@10",
+  "seed": 42,
+  "splits": {
+    "test": {
+      "end_utc": "2018-10-02T00:00:00+00:00",
+      "interactions": 49308,
+      "items": 9766,
+      "path": "data/splits/test.csv.gz",
+      "sha256": "800492ec6aa507b3169ded9097957351f43772af5beee9794ef8bf638d2d5329",
+      "start_utc": "2017-01-01T00:00:00+00:00",
+      "users": 14735
+    },
+    "train": {
+      "end_utc": "2015-12-31T00:00:00+00:00",
+      "interactions": 330951,
+      "items": 15578,
+      "path": "data/splits/train.csv.gz",
+      "sha256": "f5bef58ccdcf2ad23883f4804ed0338bd1d64f9962baa34fd30df0a598951b00",
+      "start_utc": "1999-10-14T00:00:00+00:00",
+      "users": 43463
+    },
+    "validation": {
+      "end_utc": "2016-12-31T00:00:00+00:00",
+      "interactions": 72730,
+      "items": 11291,
+      "path": "data/splits/validation.csv.gz",
+      "sha256": "2065cb37985b0edabea222a4f945c20f3b7eabf788d79332d04280875080a350",
+      "start_utc": "2016-01-01T00:00:00+00:00",
+      "users": 19776
+    }
+  },
+  "status": "fixed_before_model_training",
+  "test_fit": "train + validation, after hyperparameter selection",
+  "test_start_utc": "2017-01-01T00:00:00+00:00",
+  "ties": "descending finite score, then ascending lexicographic item_id",
+  "users_without_relevance": "excluded from macro Recall/NDCG; counts reported",
+  "validation_fit": "train",
+  "validation_start_utc": "2016-01-01T00:00:00+00:00",
+  "version": 1
+}

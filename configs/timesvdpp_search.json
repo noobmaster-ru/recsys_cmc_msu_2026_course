@@ -1,0 +1,21 @@
+{
+  "model": "timeSVD++",
+  "grid": {"n_factors": [16, 32], "n_bins": [12, 36], "regularization": [0.01, 0.1]},
+  "budget": 8,
+  "learning_rate": 0.05,
+  "n_epochs": 50,
+  "beta": 0.4,
+  "seed": 42,
+  "target": "original observed ratings 1..5; no negative sampling, no score clipping",
+  "implicit_history": "all observed fit items, including the rated target in fit, normalized by sqrt(history size); frozen at query",
+  "time": "UTC integer Unix days; fit-only per-user mean; dev=sign((day-mean)/365.25)*abs((day-mean)/365.25)^beta",
+  "item_bins": "equal-width over fit min_day..max_day inclusive; queries outside fit range clipped to nearest edge bin",
+  "unseen_user_day": "day bias and day factor are zero for unobserved (user, day); no extrapolation of day effects",
+  "loss": "one half mean squared rating error + regularization/2 times per-observation active-parameter squared norms; implicit Y penalty averages squared history coefficients",
+  "optimizer": "exact full-gradient AdaGrad, one full-data step per epoch, epsilon 1e-8; H@Y and H.T@g exact, no stale-epoch history approximation",
+  "selection": "maximum validation macro NDCG@10 at fixed stage query time after all 50 epochs",
+  "tie_break": "fewer factors, then fewer bins, then larger regularization",
+  "early_stopping": false,
+  "temporal_ablation": "one additional static SVD++ run with selected hyperparameters, temporal terms disabled; diagnostic only, not separately tuned",
+  "test_evaluated": false
+}

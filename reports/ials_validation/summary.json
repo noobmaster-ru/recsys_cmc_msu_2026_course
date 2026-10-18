@@ -1,0 +1,145 @@
+{
+  "artifact_hashes": {
+    "data/validation/ials/best_factors.npz": "067f6d02b1428bf902d29543aea50341d27492a665a2f8bfa00f08fe72e71649",
+    "data/validation/ials/best_per_user.csv.gz": "82d0cef2096e43bc0f1c45a02239ff666a8a972fb6ae2da881b0f3fd828a0add",
+    "data/validation/ials/best_recommendation_indices.npy": "f2a885429243bddcf2ad7448859edcf288432780b22121db27ae882f1d75ebd7",
+    "reports/ials_validation/bootstrap_vs_cf.csv": "49a69baf35e764c917202a4ef5580729f5c3b5841ddbabb19562fb6db079d483",
+    "reports/ials_validation/comparison.csv": "cb78333cbe49eaab8d21a46bd74b1d7ff06678220d0e115069a9bc9827d26f64",
+    "reports/ials_validation/history_slices.csv": "95d2333afbec7b2bd475040316e0e36f2ec13d0673c7799d9cb837a1312738a6",
+    "reports/ials_validation/popularity_slices.csv": "61f9523acf56c897404af1cf5ccecb0dc778c47270b7ab418f4a3aa66c68d7c9",
+    "reports/ials_validation/search_results.csv": "ed5c2ec3abfd19e21c23c66111dec101ce325319bda86260970fcff57419a43d",
+    "reports/ials_validation/training_curve.csv": "f92c26033345c814e640abedd0923659532138eb30376e7f7a9a443d9a239e25"
+  },
+  "batch_size": 128,
+  "best_params": {
+    "alpha": 40.0,
+    "n_factors": 64,
+    "n_iterations": 15,
+    "regularization": 0.1,
+    "seed": 42,
+    "solver_batch_size": 128
+  },
+  "best_validation_metrics": {
+    "catalog_coverage_at_10": 0.14321479008858648,
+    "evaluation_seconds": 1.5827362090349197,
+    "fallback_rate": 0.050259625747036345,
+    "ndcg_at_10": 0.02189326209164422,
+    "recall_at_10": 0.0343600495251381,
+    "users": 10207
+  },
+  "bootstrap_intervals": [
+    {
+      "ci_high": 0.023881833187083173,
+      "ci_low": 0.020066085501484515,
+      "estimate": 0.02189326209164422,
+      "estimate_for": "iALS",
+      "metric": "ndcg_at_10"
+    },
+    {
+      "ci_high": 0.023026157207767243,
+      "ci_low": 0.01928732284726772,
+      "estimate": 0.021111418227279195,
+      "estimate_for": "ItemKNN",
+      "metric": "ndcg_at_10"
+    },
+    {
+      "ci_high": 0.002594840631597708,
+      "ci_low": -0.0010145020336926425,
+      "estimate": 0.0007818438643650248,
+      "estimate_for": "difference",
+      "metric": "ndcg_at_10"
+    },
+    {
+      "ci_high": 0.037376002885563815,
+      "ci_low": 0.0315272628990187,
+      "estimate": 0.0343600495251381,
+      "estimate_for": "iALS",
+      "metric": "recall_at_10"
+    },
+    {
+      "ci_high": 0.03509215406479635,
+      "ci_low": 0.029378963937356943,
+      "estimate": 0.032179211921279066,
+      "estimate_for": "ItemKNN",
+      "metric": "recall_at_10"
+    },
+    {
+      "ci_high": 0.005098847030017209,
+      "ci_low": -0.0007195425328128523,
+      "estimate": 0.002180837603859037,
+      "estimate_for": "difference",
+      "metric": "recall_at_10"
+    }
+  ],
+  "cf_best_params": {
+    "n_neighbors": 100,
+    "shrinkage": 10.0
+  },
+  "cf_summary_sha256": "51ae922ab69f8d6536ef443080f2edb9c8a101867c984f438d807f9727d89c6e",
+  "cf_timing_note": "CF timing reused from its prior recorded run; input/indexing excluded from model fit times",
+  "cf_validation_metrics": {
+    "catalog_coverage_at_10": 0.7387983053023495,
+    "evaluation_seconds": 1.2774372919811867,
+    "fallback_rate": 0.05143528950720094,
+    "ndcg_at_10": 0.021111418227279202,
+    "recall_at_10": 0.032179211921279066,
+    "users": 10207
+  },
+  "cohort": {
+    "catalog_items": 15578,
+    "evaluation_users": 10207,
+    "new_item_interactions": 16949,
+    "new_user_interactions": 28223,
+    "relevant_interactions": 25646,
+    "seen_relevant_items_removed": 0,
+    "users_excluded_for_fewer_than_k_candidates": 0
+  },
+  "cohort_fingerprint": "1f05dcdbee18a4113fc31429695c475dfd87013936b4dd4668102c90921c9e9e",
+  "completed_trials": 12,
+  "configuration": {
+    "budget": 12,
+    "confidence": "c_ui = 1 + alpha * p_ui, including c=1 on unobserved pairs",
+    "early_stopping": false,
+    "grid": {
+      "alpha": [
+        10.0,
+        40.0
+      ],
+      "n_factors": [
+        16,
+        32,
+        64
+      ],
+      "regularization": [
+        0.1,
+        1.0
+      ]
+    },
+    "model": "iALS",
+    "n_iterations": 15,
+    "preference": "p_ui = 1 for fit rating >= 4; otherwise 0",
+    "regularization": "lambda * (sum user squared norms + sum item squared norms); not degree-scaled",
+    "seed": 42,
+    "selection": "maximum validation macro NDCG@10",
+    "solver_batch_size": 128,
+    "test_evaluated": false,
+    "tie_break": "fewer factors, then smaller alpha, then larger regularization"
+  },
+  "input_hashes": {
+    "train": "f5bef58ccdcf2ad23883f4804ed0338bd1d64f9962baa34fd30df0a598951b00",
+    "validation": "2065cb37985b0edabea222a4f945c20f3b7eabf788d79332d04280875080a350"
+  },
+  "interval_interpretation": "validation after hyperparameter selection; not an independent test claim",
+  "protocol_sha256": "75423342fdaf3cac15838c4d01b3154d6bb5ab5ed85f1781e97d3daa8db04f66",
+  "query_timestamp": 1451606400,
+  "source_hashes": {
+    "configs/ials_search.json": "208b2d589e62f4eed926e638b8e8d0a7f4cabc59770ddd60d56b34a1de20dd5f",
+    "data_utils.py": "6085759d607b7fa3806d77df6c6a567ba427ad1fd8b1d111c3ef05bcd2634195",
+    "evaluation.py": "346d6394896d19d4245039a49958852633341e1cd35f5e5bdd42d7db2d69baa3",
+    "models/ials.py": "02b80d67fd498d1faed0f2d2369c4f22a6d60fdba23b37727aac65d553ee8a8a",
+    "requirements.txt": "aafbccf0e045c3c7f397a00b254433688bbb7c80044e24c2f6791c69cd85723a",
+    "scripts/tune_ials.py": "02f7fa10b34c727402016ee718828afaaf8ac0ec23b5aae2396196df549be47a"
+  },
+  "test_evaluated": false,
+  "training_data": "train only; no train+validation refit yet"
+}
