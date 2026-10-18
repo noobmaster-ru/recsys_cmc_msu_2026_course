@@ -60,7 +60,7 @@
   "reports/item_knn_validation/search_results.csv": "c36d92a0a72828d05ac4fcce53080fb8f3c3003748dead2aba1ca8ae6112613e",
   "reports/item_knn_validation/summary.json": "51ae922ab69f8d6536ef443080f2edb9c8a101867c984f438d807f9727d89c6e",
   "reports/presentation_diagnostics.json": "39ce06a10b50e24fa0fe5964c8caa01806550413a776cc2f3c656ee91685dd89",
-  "reports/submission_audit.json": "64f2bfc243c30226a3a1442573af9e6b53e5c29061948d68db4be6e9d17937f6",
+  "reports/submission_audit.json": "b249e02366b53047c8c1204c48cd6af47bcae9a5cb42e422380fcd7850640886",
   "reports/timesvdpp_validation/ablation_training_curve.csv": "be1f55a2eef5567c588b8bf564244d1cfea4d94cf54fe1e4d6316f091f019083",
   "reports/timesvdpp_validation/bootstrap_vs_baselines.csv": "c7e47aedb91ce2663e722fab6cda373361bc022efa23fec672241a0c1dcfc90c",
   "reports/timesvdpp_validation/comparison.csv": "28b3e967dedf93f79a6242b62ac8fce4a89b9a930b3eaa8feae2333399be86df",
