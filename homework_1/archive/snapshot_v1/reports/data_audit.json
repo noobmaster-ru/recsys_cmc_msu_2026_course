@@ -1,0 +1,203 @@
+{
+  "all_data_checks_passed": true,
+  "checks": {
+    "all_items_have_title_and_metadata": true,
+    "all_ratings_in_1_to_5": true,
+    "at_least_1000_items": true,
+    "at_least_1000_items_with_non_id_metafeatures": true,
+    "at_least_1000_users": true,
+    "interaction_count_100000_to_2000000": true,
+    "minimum_five_interactions_per_user_and_item": true,
+    "unique_user_item_pairs": true
+  },
+  "cleaned": {
+    "density": 0.0005315805135895146,
+    "end_utc": "2018-10-02T00:00:00+00:00",
+    "interactions": 452989,
+    "interactions_per_item": {
+      "max": 777,
+      "mean": 26.869268639895605,
+      "median": 12,
+      "min": 5
+    },
+    "interactions_per_user": {
+      "max": 771,
+      "mean": 8.961915878605627,
+      "median": 6.0,
+      "min": 5
+    },
+    "items": 16859,
+    "positive_ratings_at_least_four": {
+      "interactions": 359335,
+      "items": 16822,
+      "users": 50060
+    },
+    "rating_counts": {
+      "1": 27429,
+      "2": 21759,
+      "3": 44466,
+      "4": 84349,
+      "5": 274986
+    },
+    "start_utc": "1999-10-14T00:00:00+00:00",
+    "users": 50546
+  },
+  "cleaning_version": 1,
+  "dataset": "Amazon Reviews 2018 / Video Games / 5-core",
+  "five_core_iterations": [
+    {
+      "interactions": 455560,
+      "items": 17194,
+      "removed_interactions": 17183,
+      "users": 50866
+    },
+    {
+      "interactions": 454205,
+      "items": 16921,
+      "removed_interactions": 1355,
+      "users": 50789
+    },
+    {
+      "interactions": 453361,
+      "items": 16910,
+      "removed_interactions": 844,
+      "users": 50588
+    },
+    {
+      "interactions": 453157,
+      "items": 16869,
+      "removed_interactions": 204,
+      "users": 50578
+    },
+    {
+      "interactions": 453045,
+      "items": 16866,
+      "removed_interactions": 112,
+      "users": 50553
+    },
+    {
+      "interactions": 453013,
+      "items": 16860,
+      "removed_interactions": 32,
+      "users": 50551
+    },
+    {
+      "interactions": 452993,
+      "items": 16860,
+      "removed_interactions": 20,
+      "users": 50546
+    },
+    {
+      "interactions": 452989,
+      "items": 16859,
+      "removed_interactions": 4,
+      "users": 50546
+    }
+  ],
+  "interaction_quality": {
+    "exact_duplicate_records": 23287,
+    "invalid": {},
+    "pairs_with_conflicting_ratings": 133,
+    "removed_repeated_pair_records": 24150,
+    "repeated_user_item_pairs": 23937
+  },
+  "metadata_coverage": {
+    "brand": {
+      "fraction": 0.9932380330980485,
+      "items_with_value": 16745
+    },
+    "categories": {
+      "fraction": 0.9912806216264309,
+      "items_with_value": 16712
+    },
+    "description": {
+      "fraction": 0.9678509994661605,
+      "items_with_value": 16317
+    },
+    "features": {
+      "fraction": 0.8766237617889554,
+      "items_with_value": 14779
+    },
+    "items_with_category_other_than_video_games": 16712,
+    "title": {
+      "fraction": 1.0,
+      "items_with_value": 16859
+    },
+    "unique_brands": 1573,
+    "unique_categories": 123
+  },
+  "metadata_quality": {
+    "duplicate_item_records": 12908,
+    "invalid_item_ids": 0,
+    "observed_items_without_metadata": 19,
+    "observed_items_without_title": 0,
+    "raw_records": 84819,
+    "records_with_category_breadcrumb_boundary": 56283,
+    "records_with_normalized_title_brand_or_categories": 61289,
+    "unique_item_ids": 71911
+  },
+  "outputs": {
+    "data/processed/interactions.csv.gz": {
+      "bytes": 4904100,
+      "sha256": "69f17b05dba32fd7abb2ba7557c17aef4de58d62a8247b413bd92c9e79d5f0e7"
+    },
+    "data/processed/items.jsonl.gz": {
+      "bytes": 8769755,
+      "sha256": "f48c350d3142530978f3a23beda57f207033e201d43b443011efaf7f61d49edb"
+    }
+  },
+  "policies": {
+    "five_core": "Iteratively filter users and items with fewer than five remaining interactions.",
+    "interaction": "One earliest observed rating per user-item; same-time ties use source line order.",
+    "metadata": "Normalize HTML/whitespace; choose most informative duplicate metadata row; require title.",
+    "pending": "Seminar dataset exclusion and the train/validation/test protocol require separate verification.",
+    "positive_relevance": "rating >= 4 is a diagnostic only; no ratings removed by this threshold.",
+    "sampling": "Full supplied category 5-core; no random subsampling and no random operations.",
+    "selection_bias": "The supplied and restored 5-core use the full observation period. This is cohort selection, not a production cold-start evaluation; train-only filtering must be considered in the evaluation protocol.",
+    "temporal_features": "Metadata are a crawl-time snapshot, not historical versions. Static catalog availability is an assumption. No price/rank/related-item links, votes or review texts exported as features."
+  },
+  "raw_interactions": {
+    "interactions": 497577,
+    "items": 17408,
+    "users": 55223
+  },
+  "source_page": "https://cseweb.ucsd.edu/~jmcauley/datasets/amazon_v2/",
+  "sources": {
+    "Video_Games_5.json.gz": {
+      "bytes": 153969506,
+      "sha256": "a0bd63e90ad3bd577778678672bb2e7e88b8c085683c86aca2f18c1ab543cb84",
+      "url": "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_v2/categoryFilesSmall/Video_Games_5.json.gz"
+    },
+    "meta_Video_Games.json.gz": {
+      "bytes": 53279669,
+      "sha256": "4069e17c7efa33e7574c2e77f1fe0b0c6f2a42a7ac29c4422696d788d8a8e0a6",
+      "url": "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_v2/metaFiles2/meta_Video_Games.json.gz"
+    }
+  },
+  "stages": [
+    {
+      "interactions": 497577,
+      "items": 17408,
+      "stage": "valid_records",
+      "users": 55223
+    },
+    {
+      "interactions": 473427,
+      "items": 17408,
+      "stage": "earliest_record_per_user_item",
+      "users": 55223
+    },
+    {
+      "interactions": 472743,
+      "items": 17389,
+      "stage": "join_metadata_with_nonempty_title",
+      "users": 55223
+    },
+    {
+      "interactions": 452989,
+      "items": 16859,
+      "stage": "restore_five_core",
+      "users": 50546
+    }
+  ]
+}

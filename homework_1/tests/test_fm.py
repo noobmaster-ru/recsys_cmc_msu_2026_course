@@ -14,8 +14,7 @@ class FMTests(unittest.TestCase):
     def setUp(self):
         self.frame=pd.DataFrame([('a','A',5,1),('a','B',1,2),('b','B',4,3),('b','C',5,4),('c','C',2,5),('c','D',5,6)],columns=['user_id','item_id','rating','timestamp'])
         self.data=FitData.from_frame(self.frame)
-        self.records={'A':{'brand':'One','categories':['Video Games','PC','Games']},'B':{'brand':'Two','categories':['PC','Games']},'C':{'brand':'One','categories':['Console']},'D':{}}
-        self.features=MetadataFeatures.from_items(self.data,self.records,minimum_items=1)
+        self.features=MetadataFeatures.from_history(self.data,self.frame,10,minimum_items=1)
 
     def test_fm_formula_matches_explicit_pairwise_sum(self):
         rng=np.random.default_rng(5);w=rng.normal(size=8);v=rng.normal(size=(8,3))
@@ -43,18 +42,44 @@ class FMTests(unittest.TestCase):
                 v[j,f]+=eps;plus=objective();v[j,f]-=2*eps;minus=objective();v[j,f]+=eps
                 self.assertAlmostEqual(gv[pos,f],(plus-minus)/(2*eps),places=8)
 
-    def test_metadata_vocabulary_is_fit_only_with_category_normalization(self):
-        expanded={**self.records,'FUTURE':{'brand':'NeverTrain','categories':['FutureCategory']}}
-        other=MetadataFeatures.from_items(self.data,expanded,minimum_items=1)
+    def test_metadata_is_fit_only_and_rating_independent(self):
+        other=MetadataFeatures.from_history(self.data,self.frame,10,minimum_items=1)
         self.assertEqual(other.fingerprint,self.features.fingerprint)
-        self.assertFalse(any('future' in name for name in other.feature_names))
-        self.assertFalse(any(name=='category:video games' for name in other.feature_names))
-        for row,values in zip(other.item_indices,other.item_values):
-            cats=[p for p,j in enumerate(row) if other.feature_names[j].startswith('category:')]
-            self.assertAlmostEqual(float(np.sum(values[cats]**2)),1.)
-        rare=MetadataFeatures.from_items(self.data,self.records,minimum_items=3)
-        self.assertEqual(rare.diagnostics['brand_vocabulary'],0)
-        self.assertIn('brand:UNK',rare.feature_names)
+        self.assertTrue(other.diagnostics['all_source_timestamps_before_query'])
+        self.assertFalse(other.diagnostics['snapshot_fields_used'])
+        self.assertFalse(other.diagnostics['rating_values_used_in_metadata'])
+        self.assertFalse(any(k in n for n in other.feature_names for k in ['brand:','category:']))
+        poisoned=self.frame.assign(brand='FUTURE_SNAPSHOT',reviewText='future edited review')
+        ignored=MetadataFeatures.from_history(self.data,poisoned,10,minimum_items=1)
+        self.assertEqual(ignored.fingerprint,other.fingerprint)
+        # Changing known rating labels does not change the numerical side features.
+        relabeled=self.frame.copy();relabeled['rating']=6-relabeled.rating
+        relabeled_data=FitData.from_frame(relabeled)
+        rebuilt=MetadataFeatures.from_history(relabeled_data,relabeled,10,minimum_items=1)
+        np.testing.assert_array_equal(rebuilt.item_values,other.item_values)
+        self.assertEqual(rebuilt.feature_names,other.feature_names)
+        rare=MetadataFeatures.from_history(self.data,self.frame,10,minimum_items=5)
+        self.assertEqual(rare.diagnostics['first_year_vocabulary'],0)
+        self.assertIn('first_year:UNK',rare.feature_names)
+
+    def test_metadata_time_guard_and_hand_computed_timestamp_features(self):
+        with self.assertRaises(ValueError):
+            MetadataFeatures.from_history(self.data,self.frame,6)
+        future=self.frame.copy();future.loc[0,'timestamp']=20
+        with self.assertRaises(ValueError):
+            MetadataFeatures.from_history(FitData.from_frame(future),future,10)
+        with self.assertRaises(ValueError):
+            MetadataFeatures.from_history(self.data,future,30)
+        row=self.data.item_index['B'];features=self.features
+        values={features.feature_names[j]:v for j,v in zip(features.item_indices[row],features.item_values[row])}
+        self.assertEqual(values['first_year:1970'],1.)
+        self.assertEqual(values['first_month:01'],1.)
+        self.assertAlmostEqual(values['history_count_log'],np.log1p(2)/np.log1p(1000))
+        self.assertAlmostEqual(values['history_age_log_days'],np.log1p(8/86400)/np.log1p(3650))
+        self.assertAlmostEqual(values['recency_log_days'],np.log1p(7/86400)/np.log1p(3650))
+        ids=MetadataFeatures.from_history(self.data,self.frame,10,use_metadata=False)
+        self.assertEqual(ids.item_indices.shape[1],1)
+        self.assertEqual(len(ids.feature_names),1+3+4)
 
     def test_negatives_exclude_all_fit_ratings_and_are_reproducible(self):
         first=sample_training(self.data,self.frame,negatives_per_positive=2,seed=137)

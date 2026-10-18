@@ -1,0 +1,116 @@
+{
+  "baseline_best_params": {
+    "EASE": {
+      "regularization": 100.0
+    },
+    "ItemKNN": {
+      "n_neighbors": 100,
+      "shrinkage": 10.0
+    },
+    "iALS": {
+      "alpha": 40.0,
+      "n_factors": 64,
+      "n_iterations": 15,
+      "regularization": 0.1,
+      "seed": 42,
+      "solver_batch_size": 128
+    }
+  },
+  "baseline_summary_hashes": {
+    "EASE": "0dc7828ab4e2c4011b9ee25dac7abc6ee3675ea985036f660c90fd1fd8065aa1",
+    "ItemKNN": "51ae922ab69f8d6536ef443080f2edb9c8a101867c984f438d807f9727d89c6e",
+    "iALS": "56630f140036e549e92ab09ea6f1c99b190291e283139d69e5359507376d146e"
+  },
+  "cohort": {
+    "catalog_items": 15578,
+    "evaluation_users": 10207,
+    "new_item_interactions": 16949,
+    "new_user_interactions": 28223,
+    "relevant_interactions": 25646,
+    "seen_relevant_items_removed": 0,
+    "users_excluded_for_fewer_than_k_candidates": 0
+  },
+  "cohort_fingerprint": "1f05dcdbee18a4113fc31429695c475dfd87013936b4dd4668102c90921c9e9e",
+  "configuration": {
+    "batch_size": 1024,
+    "budget": 8,
+    "early_stopping": false,
+    "features": "user ID, item ID, brand, categories; category L2 normalization; fit catalog vocabulary only",
+    "grid": {
+      "learning_rate": [
+        0.05,
+        0.15
+      ],
+      "n_factors": [
+        16,
+        32
+      ],
+      "regularization": [
+        1e-05,
+        0.001
+      ]
+    },
+    "loss": "mean logistic loss; observed rating>=4 positive, observed 1-3 negative, sampled unobserved negative",
+    "metadata_ablation": "fixed additional ID-only training run with selected hyperparameters; diagnostic only, not used for selection",
+    "metadata_assumption": "static crawl-time snapshot; historical availability unverified",
+    "minimum_items_per_metadata_token": 5,
+    "model": "FM",
+    "n_epochs": 12,
+    "negative_sampling": "uniform with replacement from fit catalog excluding ALL observed fit pairs; frozen across epochs and trials; no future exclusion",
+    "negative_sampling_seed": 137,
+    "negatives_per_positive": 2,
+    "optimizer": "mini-batch sparse AdaGrad, gradient summed per repeated feature before accumulator update; epsilon 1e-8",
+    "regularization": "reg/2 times mean sum_active x_j^2*(w_j^2+||v_j||^2); feature-frequency weighted, bias unregularized",
+    "seed": 42,
+    "selection": "maximum validation macro NDCG@10 after all 12 epochs",
+    "shuffle_seed": 43,
+    "test_evaluated": false,
+    "tie_break": "fewer factors, then smaller learning rate, then larger regularization"
+  },
+  "evaluation_batch_size": 128,
+  "feature_diagnostics": {
+    "brand_vocabulary": 280,
+    "category_l2_normalization": true,
+    "category_vocabulary": 78,
+    "features": 59402,
+    "fit_items_with_brand": 15474,
+    "fit_items_with_category": 15447,
+    "item_id_features": 15578,
+    "max_active_item_features": 7,
+    "metadata_assumption": "crawl-time static snapshot; historical availability unverified",
+    "minimum_catalog_items_per_token": 5,
+    "user_id_features": 43463,
+    "uses_metadata": true
+  },
+  "feature_fingerprint": "d7fae237b9f4aced95e25e19e23ab67c11841ff098eafce132df62b2fa39ac78",
+  "input_hashes": {
+    "train": "f5bef58ccdcf2ad23883f4804ed0338bd1d64f9962baa34fd30df0a598951b00",
+    "validation": "2065cb37985b0edabea222a4f945c20f3b7eabf788d79332d04280875080a350"
+  },
+  "metadata_sha256": "f48c350d3142530978f3a23beda57f207033e201d43b443011efaf7f61d49edb",
+  "protocol_sha256": "75423342fdaf3cac15838c4d01b3154d6bb5ab5ed85f1781e97d3daa8db04f66",
+  "query_timestamp": 1451606400,
+  "source_hashes": {
+    "configs/fm_search.json": "19bd1d8357f13c9b2d36a8e791d90b35bf99963086cfc2ca3851e77e23ee29ff",
+    "data_utils.py": "6085759d607b7fa3806d77df6c6a567ba427ad1fd8b1d111c3ef05bcd2634195",
+    "evaluation.py": "346d6394896d19d4245039a49958852633341e1cd35f5e5bdd42d7db2d69baa3",
+    "models/fm.py": "358d815f30fe781d925de984a285aa890b44e951fa64d85b88907e8612d1e073",
+    "requirements.txt": "aafbccf0e045c3c7f397a00b254433688bbb7c80044e24c2f6791c69cd85723a",
+    "scripts/prepare_data.py": "708cce4656015ea568c93d6dbea7e385884c83c78129e65354ddbe48d0ebd309",
+    "scripts/tune_ease.py": "e8428c44d31e7fc22827673ca950de590d75c689b4705bbb7294b5b05337f57f",
+    "scripts/tune_fm.py": "95fb113c5c9dc81e8db8c781990087447e0e7cea2211ea1c5d8998319ecf826e",
+    "scripts/tune_ials.py": "02f7fa10b34c727402016ee718828afaaf8ac0ec23b5aae2396196df549be47a"
+  },
+  "test_evaluated": false,
+  "training_data": "train only, no train+validation refit",
+  "training_examples": {
+    "examples": 849123,
+    "fingerprint": "f8a61dd491d22f49683e61e2a63bda288856a3b485758cad42f856f410ca77cd",
+    "negative_sampling_seed": 137,
+    "negatives_per_positive": 2,
+    "observed_negative": 71865,
+    "observed_positive": 259086,
+    "sampled_unobserved": 518172,
+    "sampling": "uniform with replacement, excluding ALL observed train pairs only; fixed across epochs/trials"
+  }
+}

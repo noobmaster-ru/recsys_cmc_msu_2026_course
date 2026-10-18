@@ -1,5 +1,7 @@
 {
+  "correction_plan_sha256": "9cdc3d3121dcc25c8648325c2a60837e91fe8ec2da7f8af5c52573ae1b240757",
   "evaluation_batch_size": 128,
+  "experiment": "temporal_metadata_v2",
   "feature_policy": "rebuild indices, metadata vocabularies, negative samples, temporal schema from train+validation only",
   "fit": "train + validation, fresh initialization, no warm start",
   "fm_preprocessing": {
@@ -15,8 +17,8 @@
       "batch_size": 1024,
       "learning_rate": 0.05,
       "n_epochs": 12,
-      "n_factors": 32,
-      "regularization": 0.001,
+      "n_factors": 16,
+      "regularization": 1e-05,
       "seed": 42,
       "shuffle_seed": 43
     },
@@ -42,7 +44,8 @@
       "seed": 42
     }
   },
-  "post_test_policy": "no hyperparameter, epoch, feature or protocol changes based on test; no diagnostic ablation fits on test",
+  "post_test_policy": "corrective reevaluation on previously used holdout; after v2 freeze no hyperparameter, epoch, feature or protocol changes; no diagnostic ablation fits on test",
+  "prior_test_already_observed": true,
   "query_time_utc": "2017-01-01T00:00:00+00:00",
   "selection": "completed validation macro NDCG@10; no test-based choices",
   "statistics": "paired bootstrap vs validation-selected reference; 2000 resamples, seed 42, 95%; unadjusted intervals",
@@ -56,11 +59,11 @@
       "users": 10207
     },
     "FM": {
-      "catalog_coverage_at_10": 0.0929515984080113,
-      "evaluation_seconds": 1.4924218339729123,
+      "catalog_coverage_at_10": 0.06772371292848889,
+      "evaluation_seconds": 1.4047718750080094,
       "fallback_rate": 0.0,
-      "ndcg_at_10": 0.008493634848828247,
-      "recall_at_10": 0.014402213885059472,
+      "ndcg_at_10": 0.0058077162867609805,
+      "recall_at_10": 0.00971814074085739,
       "users": 10207
     },
     "ItemKNN": {
@@ -98,10 +101,10 @@
   },
   "validation_summary_hashes": {
     "EASE": "0dc7828ab4e2c4011b9ee25dac7abc6ee3675ea985036f660c90fd1fd8065aa1",
-    "FM": "bdfb84abff9a50b42c85ae6b0ee8e366db7edd620c01e8ee5718ff1b2ed1d13d",
+    "FM": "d4af6700ac326ea4c1b96a6532f14c53d43b8d5c997b8393e4f87608104a2a81",
     "ItemKNN": "51ae922ab69f8d6536ef443080f2edb9c8a101867c984f438d807f9727d89c6e",
     "iALS": "56630f140036e549e92ab09ea6f1c99b190291e283139d69e5359507376d146e",
-    "timeSVD++": "199115b4ad432c8a1bf3fe1251e4c264f5faea0149a62d278d99303e08b799a4"
+    "timeSVD++": "88f32f575828bb8e53544927da7a2a82248f712c8d249a49dc759abbc0070091"
   },
-  "version": 1
+  "version": 2
 }

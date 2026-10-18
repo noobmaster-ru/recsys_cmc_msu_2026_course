@@ -1,0 +1,22 @@
+{
+  "version": "temporal_metadata_v2",
+  "reason": "Correct unverified historical availability of snapshot brand/categories; no choice based on old test metric values",
+  "prior_experiment_commit": "e89fb2d",
+  "prior_test_already_observed": true,
+  "test_interpretation": "corrective reevaluation on previously used holdout, not a new independent untouched test",
+  "archive": "archive/snapshot_v1",
+  "protocol_sha256": "75423342fdaf3cac15838c4d01b3154d6bb5ab5ed85f1781e97d3daa8db04f66",
+  "fm_configuration_sha256": "27f6ccb4981462d7cb50cbffc38ded5e7377ec6d25c5b11eef38f585e44ae62e",
+  "features": "user ID, item ID; timestamp-derived item metadata: first observed review year/month; log1p(fit event count)/log1p(1000), log1p(history age days)/log1p(3650), log1p(recency days)/log1p(3650)",
+  "feature_time_policy": "one fixed fit-stage representation as of query time for training reconstruction and recommendation; NOT point-in-time prediction at each historic training event",
+  "no_future_metadata": "No snapshot content; use fit user/item identifiers and timestamp only; max source timestamp < query",
+  "selection": "same 8 FM trials, 12 epochs, seeds and tie-break; validation macro NDCG@10 only; one ID-only diagnostic ablation",
+  "untouched_models": "Keep original four validation searches/parameters; refresh comparison evidence only",
+  "final": "freeze choices, refit ALL five on train+validation; unseal test only after all refits; no further choices",
+  "post_test_changes_allowed": false,
+  "implementation_hashes_before_validation": {
+    "models/fm.py": "cb47cf19857607d0d598a0255244f855492b54b01d083905ffc254aaac5bf013",
+    "scripts/tune_fm.py": "cab74d7a3dd4069862b58102e9e539552671edc5055c9b53c01b5d5170df91c5",
+    "configs/fm_search.json": "27f6ccb4981462d7cb50cbffc38ded5e7377ec6d25c5b11eef38f585e44ae62e"
+  }
+}

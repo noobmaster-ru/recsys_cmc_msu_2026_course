@@ -25,7 +25,8 @@ from scripts.tune_ials import write_json,load_result
 class TestReadGate:
     def __init__(self,root):
         self.test=(Path(root)/'data/splits/test.csv.gz').resolve()
-        self.full={(Path(root)/p).resolve() for p in ['data/processed/interactions.csv.gz','data/raw/Video_Games_5.json.gz']}
+        self.full={(Path(root)/p).resolve() for p in ['data/processed/interactions.csv.gz','data/raw/Video_Games_5.json.gz',
+            'data/processed/items.jsonl.gz','data/raw/meta_Video_Games.json.gz']}
         self.active=True;self.allow_test=False;self.opened=False;self.open_count=0
     def __call__(self,event,args):
         if not self.active or event!='open' or not isinstance(args[0],(str,bytes)):return
@@ -54,14 +55,8 @@ def prepare_fit(root,protocol):
     expected=protocol['evaluation_diagnostics']['test']
     for actual,key in [(len(frame),'fit_interactions'),(len(data.user_ids),'fit_users'),(len(data.item_ids),'catalog_items')]:
         if actual!=expected[key]:raise ValueError(f'Final fit changed: {key}')
-    path=root/'data/processed/items.jsonl.gz';metadata_hash=sha256(path)
-    if metadata_hash!=protocol['input_checksums']['data/processed/items.jsonl.gz']['sha256']:raise ValueError('Changed metadata')
-    catalog=set(data.item_ids);records={}
-    with gzip.open(path,'rt',encoding='utf-8') as stream:
-        for line in stream:
-            record=json.loads(line)
-            if record['item_id'] in catalog:records[record['item_id']]=record
-    return frame,data,records,hashes,metadata_hash,query
+    # Snapshot metadata are deliberately not read by the corrected pipeline.
+    return frame,data,{},hashes,None,query
 
 
 def refit_all(data,frame,metadata,lock,output,local,*,event=lambda *a,**k:None):
@@ -76,7 +71,8 @@ def refit_all(data,frame,metadata,lock,output,local,*,event=lambda *a,**k:None):
         elif name=='iALS':model=IALS(**params).fit(data)
         elif name=='EASE':model=EASE(**params).fit(data)
         elif name=='FM':
-            features=MetadataFeatures.from_items(data,metadata,minimum_items=fm_spec['minimum_items_per_metadata_token'])
+            query=int(pd.Timestamp(lock['query_time_utc']).timestamp())
+            features=MetadataFeatures.from_history(data,frame,query,minimum_items=fm_spec['minimum_items_per_metadata_token'])
             training=sample_training(data,frame,negatives_per_positive=fm_spec['negatives_per_positive'],seed=fm_spec['negative_sampling_seed'])
             preparation=perf_counter()-started;started=perf_counter()
             model=FM(**params).fit(data,features,training)
@@ -177,7 +173,8 @@ def run_final(root=ROOT):
             'validation_summary_hashes':lock['validation_summary_hashes'],
             'source_hashes':{p:sha256(root/p) for p in files},'protocol_sha256':sha256(root/'reports/evaluation_protocol.json'),
             'input_hashes':{**input_hashes,'test_expected':protocol['splits']['test']['sha256']},
-            'metadata_sha256':metadata_hash,'fit_fingerprint':data.fingerprint,
+            'metadata_source':'fit split timestamps only','prior_test_already_observed':True,
+            'correction_plan_sha256':sha256(root/'reports/correction_plan.json'),'fit_fingerprint':data.fingerprint,
             'fit':{'interactions':len(frame),'users':len(data.user_ids),'items':len(data.item_ids),'max_timestamp':data.max_timestamp},
             'query_timestamp':query,'fit_policy':lock['fit'],'test_policy':lock['post_test_policy'],
             'confidence_intervals':protocol['confidence_intervals']}
@@ -229,7 +226,7 @@ def run_final(root=ROOT):
             'test_sha256':test_hash,'test_rows':len(test),'cohort_fingerprint':context.fingerprint,'cohort':context.diagnostics,
             'results':{name:r.metrics for name,r in results.items()},'refit_manifest':manifest,
             'bootstrap_intervals':intervals.to_dict(orient='records'),
-            'interval_interpretation':'held-out test after frozen choices; paired user bootstrap, conditional on fixed fitted models; unadjusted multiple comparisons',
+            'interval_interpretation':'corrective reevaluation of previously observed holdout after v2 choices frozen; not a new independent test; paired user bootstrap conditional on fixed fitted models; unadjusted multiple comparisons',
             'test_open_operations':gate.open_count,
             'artifact_hashes':{str(p.relative_to(root)):sha256(p) for p in
                 [*sorted(local.rglob('*')),*sorted(output.glob('*.csv')),output/'final_plan.json',output/'execution_journal.jsonl'] if p.is_file()}}

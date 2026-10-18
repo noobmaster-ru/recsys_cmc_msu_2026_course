@@ -44,7 +44,7 @@ class FinalPipelineTests(unittest.TestCase):
         frame=pd.concat([train,validation],ignore_index=True);data=FitData.from_frame(frame)
         hold=pd.DataFrame([(f'u{u}',f'i{u+4:02}',5,20) for u in range(9)],columns=train.columns)
         context=EvaluationContext.from_frames(frame,hold,fit_data=data,k=2,query_timestamp=20)
-        lock={'models':{
+        lock={'query_time_utc':pd.Timestamp(20,unit='s',tz='UTC').isoformat(),'models':{
           'ItemKNN':{'n_neighbors':3,'shrinkage':1.},
           'iALS':{'n_factors':2,'n_iterations':2,'alpha':10.,'regularization':1.},
           'EASE':{'regularization':10.},

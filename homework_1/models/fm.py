@@ -29,38 +29,68 @@ class MetadataFeatures:
     diagnostics: dict
 
     @classmethod
-    def from_items(cls, data, records, *, minimum_items=5, use_metadata=True):
-        if minimum_items<1:raise ValueError('minimum_items must be positive')
-        selected=[records.get(item,{}) for item in data.item_ids]
-        brands=[token(r.get('brand','')) for r in selected]
-        categories=[sorted({token(c) for c in r.get('categories',[]) if token(c) and token(c)!='video games'}) for r in selected]
-        bc=Counter(b for b in brands if b);cc=Counter(c for cs in categories for c in cs)
-        names=['PAD']+['user:'+u for u in data.user_ids]+['item:'+i for i in data.item_ids]
-        brand_vocab=sorted(b for b,count in bc.items() if count>=minimum_items) if use_metadata else []
-        category_vocab=sorted(c for c,count in cc.items() if count>=minimum_items) if use_metadata else []
-        if use_metadata:names+=['brand:UNK']+['brand:'+b for b in brand_vocab]+['category:UNK']+['category:'+c for c in category_vocab]
-        mapping={name:i for i,name in enumerate(names)}
-        rows=[];values=[]
-        for item,brand,cats in zip(data.item_ids,brands,categories):
-            row=[mapping['item:'+item]];value=[1.]
+    def from_history(cls, data, frame, query_timestamp, *, minimum_items=5, use_metadata=True):
+        """Item metadata derived exclusively from dated fit observations.
+
+        One representation is frozen at the recommendation query and is also
+        used to reconstruct fit labels. This is not event-time backtesting of
+        individual training rows. No rating value enters the side features.
+        """
+        import pandas as pd
+        if minimum_items < 1:
+            raise ValueError('minimum_items must be positive')
+        if FitData.from_frame(frame).fingerprint != data.fingerprint:
+            raise ValueError('Metadata frame/index mismatch')
+        if not isinstance(query_timestamp, (int, np.integer)) or query_timestamp <= data.max_timestamp:
+            raise ValueError('Metadata query must strictly follow every fit event')
+        times = frame.groupby('item_id').timestamp.agg(['min','max','count']).reindex(data.item_ids)
+        if times.isna().any().any():
+            raise ValueError('Missing fit item timestamp history')
+        first = pd.to_datetime(times['min'],unit='s',utc=True)
+        years = first.dt.year.astype(str).tolist()
+        months = first.dt.month.map(lambda x:f'{x:02}').tolist()
+        counts = [Counter(years), Counter(months)]
+        vocabs = [sorted(k for k,v in c.items() if v >= minimum_items) for c in counts]
+        names = ['PAD']+['user:'+u for u in data.user_ids]+['item:'+i for i in data.item_ids]
+        numeric_names = ['history_age_log_days','recency_log_days','history_count_log']
+        if use_metadata:
+            for prefix,vocab in zip(['first_year','first_month'],vocabs):
+                names += [prefix+':UNK']+[prefix+':'+k for k in vocab]
+            names += numeric_names
+        mapping = {name:i for i,name in enumerate(names)}
+        age = (query_timestamp-times['min'].to_numpy())/86400.
+        recency = (query_timestamp-times['max'].to_numpy())/86400.
+        numeric = np.column_stack((np.log1p(age)/np.log1p(3650.),
+                                   np.log1p(recency)/np.log1p(3650.),
+                                   np.log1p(times['count'].to_numpy())/np.log1p(1000.)))
+        width = 6 if use_metadata else 1
+        indices = np.zeros((len(data.item_ids),width),dtype=np.int32)
+        values = np.ones(indices.shape,dtype=np.float64)
+        for row,(item,year,month) in enumerate(zip(data.item_ids,years,months)):
+            indices[row,0] = mapping['item:'+item]
             if use_metadata:
-                row.append(mapping.get('brand:'+brand,mapping['brand:UNK']));value.append(1.)
-                valid=[mapping['category:'+c] for c in cats if 'category:'+c in mapping]
-                if not valid:valid=[mapping['category:UNK']]
-                row+=valid;value+=[1/np.sqrt(len(valid))]*len(valid)
-            rows.append(row);values.append(value)
-        width=max(map(len,rows));indices=np.zeros((len(rows),width),dtype=np.int32);x=np.zeros(indices.shape)
-        for i,(row,value) in enumerate(zip(rows,values)):
-            indices[i,:len(row)]=row;x[i,:len(row)]=value
-        h=hashlib.sha256(data.fingerprint.encode());h.update(json.dumps(names,ensure_ascii=False).encode())
-        h.update(indices.tobytes());h.update(x.tobytes())
-        diagnostics={'features':len(names),'user_id_features':len(data.user_ids),'item_id_features':len(data.item_ids),
-            'brand_vocabulary':len(brand_vocab),'category_vocabulary':len(category_vocab),
-            'minimum_catalog_items_per_token':minimum_items,'uses_metadata':bool(use_metadata),
-            'fit_items_with_brand':sum(bool(b) for b in brands),'fit_items_with_category':sum(bool(c) for c in categories),
-            'max_active_item_features':width,'category_l2_normalization':True,
-            'metadata_assumption':'crawl-time static snapshot; historical availability unverified'}
-        return cls(indices,x,names,len(data.user_ids),data.fingerprint,h.hexdigest(),diagnostics)
+                indices[row,1] = mapping.get('first_year:'+year,mapping['first_year:UNK'])
+                indices[row,2] = mapping.get('first_month:'+month,mapping['first_month:UNK'])
+                indices[row,3:] = [mapping[name] for name in numeric_names]
+                values[row,3:] = numeric[row]
+        digest = hashlib.sha256(data.fingerprint.encode())
+        digest.update(json.dumps(names,ensure_ascii=False).encode())
+        digest.update(indices.tobytes());digest.update(values.tobytes())
+        diagnostics = {'features':len(names),'user_id_features':len(data.user_ids),
+            'item_id_features':len(data.item_ids),'uses_metadata':bool(use_metadata),
+            'first_year_vocabulary':len(vocabs[0]) if use_metadata else 0,
+            'first_month_vocabulary':len(vocabs[1]) if use_metadata else 0,
+            'numeric_metadata_features':len(numeric_names) if use_metadata else 0,
+            'minimum_catalog_items_per_token':minimum_items,'max_active_item_features':width,
+            'query_timestamp':int(query_timestamp),'max_source_timestamp':int(frame.timestamp.max()),
+            'all_source_timestamps_before_query':bool((frame.timestamp < query_timestamp).all()),
+            'snapshot_fields_used':False,'rating_values_used_in_metadata':False,
+            'metadata_source':'fit item identifiers and review timestamps only',
+            'representation':'fixed as of stage query for fit reconstruction and recommendation',
+            'numeric_scales':{'log_days':3650,'log_count':1000},
+            'history_age_days_min':float(age.min()),'history_age_days_max':float(age.max()),
+            'metadata_assumption':'timestamp is event availability; no historical catalog snapshot required'}
+        return cls(indices,values,names,len(data.user_ids),data.fingerprint,digest.hexdigest(),diagnostics)
 
     def batch(self,users,items):
         indices=np.column_stack((np.asarray(users,dtype=np.int32)+1,self.item_indices[items]))
@@ -177,6 +207,8 @@ class FM:
     def score_batch(self,user_ids,*,query_timestamp=None):
         if not hasattr(self,'item_vectors_'):raise RuntimeError('Fit FM before scoring')
         if query_timestamp is not None and query_timestamp<=self.data_.max_timestamp:raise ValueError('Query must follow fit')
+        if query_timestamp is not None and query_timestamp<self.features_.diagnostics['query_timestamp']:
+            raise ValueError('Metadata not available at the requested query time')
         try:rows=np.asarray([self.data_.user_index[u]+1 for u in user_ids],dtype=np.int32)
         except KeyError as error:raise ValueError('Unknown user outside the warm-start cohort') from error
         # Exact decomposition of the complete FM formula, including item-metadata pairs.

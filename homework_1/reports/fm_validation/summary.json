@@ -1,20 +1,20 @@
 {
   "artifact_hashes": {
-    "data/validation/fm/best_parameters.npz": "cf7e124bfbdd47f3f9a7d2f55fe6434b58c2637a38d43f51a5f0c9e0109810b0",
-    "data/validation/fm/best_per_user.csv.gz": "e7efa8e6d5af161529c43f8789a778c4d856a4f00e4f986b07a08d0503f8664f",
-    "data/validation/fm/best_recommendation_indices.npy": "387f76191a1ec35573e1f625fa7e992d693907ace4a85e0ad026e9de730b1571",
-    "data/validation/fm/feature_schema.json": "593a005b5c8323df4d72218bc352bc3b524d075b5af42e04b1dca8960bd73645",
-    "data/validation/fm/id_only_per_user.csv.gz": "650070a592b1c9e583e004aaf9143a2dbc1116b6c48dd23a7a59650c2f66c5e8",
-    "data/validation/fm/id_only_recommendation_indices.npy": "147672ecafd6c47bb8fcada66d2a15190b62a24881a1badd273eab15ec17e56c",
-    "data/validation/fm/item_features.npz": "59cc48edf57d3105348ef62ff2ef5d7dcd7ac2e9026596461a3f5f16cdcf1ced",
-    "reports/fm_validation/ablation_training_curve.csv": "5112d79e6b410258ec55b5a06ab9319b9d504adb65adc5c5f423ca5664445f4e",
-    "reports/fm_validation/bootstrap_vs_baselines.csv": "d7bd6f3289eda08bb7becb914e5f8e78bf45bdc69d6242941414d239407c6e3f",
-    "reports/fm_validation/comparison.csv": "441d5d1220f2ca36c002d2de1270ea9096d75ab18e2e9ec1e34278cd3b73a6ca",
-    "reports/fm_validation/history_slices.csv": "4eeb14a39d74dd106ee65774ca6667ee3065d06d6187198930ae70fea0eedc52",
-    "reports/fm_validation/metadata_ablation.csv": "c8b59bccf521bc959f0ea39b211b48b1b6a5dae25b637c27a315b4e9af82a606",
-    "reports/fm_validation/popularity_slices.csv": "76408598eb83e749a62c4c9fd309ab64b8bc4daad351089a744ccbc9afa96167",
-    "reports/fm_validation/search_results.csv": "736c8269c98fd7b7a5bb4a8c2767a201b85dd97a27c8c0477da8dae774b219fc",
-    "reports/fm_validation/training_curve.csv": "46dc4de4d4d58ae45f5a2d627c585307f69d6b6831b3fffbd2753f77461b1276"
+    "data/validation/fm/best_parameters.npz": "1c3c46f6e41b5cc052f0c0c400bdf3bee35ecd2224402f8eb5bf5ee623e5cf42",
+    "data/validation/fm/best_per_user.csv.gz": "b521be96c045eb3d77dd86d8c385bd4b5e5ae86dedea02dbf27b213a9c8ceea6",
+    "data/validation/fm/best_recommendation_indices.npy": "b31c1ac5bb672e71fb1c672aea87d716281456de7d8ae1d303276dc1c5d10960",
+    "data/validation/fm/feature_schema.json": "4fee2c808d3256e040a40ff76854d913ffa69ee78d3c5f765b1382963b6416d6",
+    "data/validation/fm/id_only_per_user.csv.gz": "74b0e92142953e413ec8603b2ce985a98668323ea03c308a0ec0d5d242ce412d",
+    "data/validation/fm/id_only_recommendation_indices.npy": "f8430299e00b51423c00137230bb7ce043101a89ae294a640eb523349324da47",
+    "data/validation/fm/item_features.npz": "2ce9f579d55439083bc2d6a32510672ccacb2d06d1499432da38289e5f68d277",
+    "reports/fm_validation/ablation_training_curve.csv": "3b09e178badf9d19c7f3c03bef08d429536fc4d9cecc244bb365859cf86715ce",
+    "reports/fm_validation/bootstrap_vs_baselines.csv": "530f80059fd0647d7aecf3b3608270cb7c0a60b1940c54e125443bd78c7e4669",
+    "reports/fm_validation/comparison.csv": "847664e4b05749ddbb6257b53ed0f75f224ea33cfd443dc1975fb6a301a23fb6",
+    "reports/fm_validation/history_slices.csv": "ccb8fd41a4f810bceddf1d21bd06f8d17dece336e8760938f888d3cd22d6b218",
+    "reports/fm_validation/metadata_ablation.csv": "04b5f3cb16937509258b110b5b09c37d677883127b8dc27861a429afbffc90d3",
+    "reports/fm_validation/popularity_slices.csv": "8bb88b38cd5a58aa164e4224430225a0778cd90705d0594bc0c252d68f1e5a05",
+    "reports/fm_validation/search_results.csv": "a8f01cf19766e37a9013bcabeb05154ca3410b1ae6a74e0a9afb9c4fb49f5e94",
+    "reports/fm_validation/training_curve.csv": "2bc020b017f2160cdbe375e198a9131ef7346e08d351bc73e81e4ab3ef05fa7e"
   },
   "baseline_best_params": {
     "EASE": {
@@ -76,25 +76,25 @@
     "batch_size": 1024,
     "learning_rate": 0.05,
     "n_epochs": 12,
-    "n_factors": 32,
-    "regularization": 0.001,
+    "n_factors": 16,
+    "regularization": 1e-05,
     "seed": 42,
     "shuffle_seed": 43
   },
   "best_validation_metrics": {
-    "catalog_coverage_at_10": 0.0929515984080113,
-    "evaluation_seconds": 1.4924218339729123,
+    "catalog_coverage_at_10": 0.06772371292848889,
+    "evaluation_seconds": 1.4047718750080094,
     "fallback_rate": 0.0,
-    "ndcg_at_10": 0.008493634848828247,
-    "recall_at_10": 0.014402213885059472,
+    "ndcg_at_10": 0.0058077162867609805,
+    "recall_at_10": 0.00971814074085739,
     "users": 10207
   },
   "bootstrap_intervals": [
     {
       "baseline": "ItemKNN",
-      "ci_high": 0.009561209783499528,
-      "ci_low": 0.007456815191806208,
-      "estimate": 0.008493634848828247,
+      "ci_high": 0.006671287444576132,
+      "ci_low": 0.004963853711164708,
+      "estimate": 0.0058077162867609805,
       "estimate_for": "FM",
       "metric": "ndcg_at_10"
     },
@@ -108,17 +108,17 @@
     },
     {
       "baseline": "ItemKNN",
-      "ci_high": -0.010615179683802023,
-      "ci_low": -0.014671563464983483,
-      "estimate": -0.012617783378450948,
+      "ci_high": -0.01330121194037649,
+      "ci_low": -0.017345187953870637,
+      "estimate": -0.015303701940518215,
       "estimate_for": "difference",
       "metric": "ndcg_at_10"
     },
     {
       "baseline": "ItemKNN",
-      "ci_high": 0.016266466859345092,
-      "ci_low": 0.012591422174763073,
-      "estimate": 0.014402213885059472,
+      "ci_high": 0.011280682759594143,
+      "ci_low": 0.008164329621901775,
+      "estimate": 0.00971814074085739,
       "estimate_for": "FM",
       "metric": "recall_at_10"
     },
@@ -132,17 +132,17 @@
     },
     {
       "baseline": "ItemKNN",
-      "ci_high": -0.01456864443574222,
-      "ci_low": -0.021139179680526685,
-      "estimate": -0.017776998036219592,
+      "ci_high": -0.01929928998052673,
+      "ci_low": -0.025554380331272917,
+      "estimate": -0.022461071180421677,
       "estimate_for": "difference",
       "metric": "recall_at_10"
     },
     {
       "baseline": "iALS",
-      "ci_high": 0.009561209783499528,
-      "ci_low": 0.007456815191806208,
-      "estimate": 0.008493634848828247,
+      "ci_high": 0.006671287444576132,
+      "ci_low": 0.004963853711164708,
+      "estimate": 0.0058077162867609805,
       "estimate_for": "FM",
       "metric": "ndcg_at_10"
     },
@@ -156,17 +156,17 @@
     },
     {
       "baseline": "iALS",
-      "ci_high": -0.011349700763267731,
-      "ci_low": -0.01556041429044389,
-      "estimate": -0.01339962724281597,
+      "ci_high": -0.014070928473237461,
+      "ci_low": -0.018080051960101953,
+      "estimate": -0.016085545804883236,
       "estimate_for": "difference",
       "metric": "ndcg_at_10"
     },
     {
       "baseline": "iALS",
-      "ci_high": 0.016266466859345092,
-      "ci_low": 0.012591422174763073,
-      "estimate": 0.014402213885059472,
+      "ci_high": 0.011280682759594143,
+      "ci_low": 0.008164329621901775,
+      "estimate": 0.00971814074085739,
       "estimate_for": "FM",
       "metric": "recall_at_10"
     },
@@ -180,17 +180,17 @@
     },
     {
       "baseline": "iALS",
-      "ci_high": -0.01680290891712203,
-      "ci_low": -0.02340404005499107,
-      "estimate": -0.01995783564007863,
+      "ci_high": -0.021455789226928368,
+      "ci_low": -0.02799527130083631,
+      "estimate": -0.024641908784280714,
       "estimate_for": "difference",
       "metric": "recall_at_10"
     },
     {
       "baseline": "EASE",
-      "ci_high": 0.009561209783499528,
-      "ci_low": 0.007456815191806208,
-      "estimate": 0.008493634848828247,
+      "ci_high": 0.006671287444576132,
+      "ci_low": 0.004963853711164708,
+      "estimate": 0.0058077162867609805,
       "estimate_for": "FM",
       "metric": "ndcg_at_10"
     },
@@ -204,17 +204,17 @@
     },
     {
       "baseline": "EASE",
-      "ci_high": -0.012744721939551056,
-      "ci_low": -0.016991913586233705,
-      "estimate": -0.014878035421207868,
+      "ci_high": -0.015513417848001716,
+      "ci_low": -0.019612896750074486,
+      "estimate": -0.017563953983275135,
       "estimate_for": "difference",
       "metric": "ndcg_at_10"
     },
     {
       "baseline": "EASE",
-      "ci_high": 0.016266466859345092,
-      "ci_low": 0.012591422174763073,
-      "estimate": 0.014402213885059472,
+      "ci_high": 0.011280682759594143,
+      "ci_low": 0.008164329621901775,
+      "estimate": 0.00971814074085739,
       "estimate_for": "FM",
       "metric": "recall_at_10"
     },
@@ -228,57 +228,57 @@
     },
     {
       "baseline": "EASE",
-      "ci_high": -0.017497879450036606,
-      "ci_low": -0.024022787226247923,
-      "estimate": -0.020789169870183255,
+      "ci_high": -0.022369345063276008,
+      "ci_low": -0.02872949992297555,
+      "estimate": -0.02547324301438534,
       "estimate_for": "difference",
       "metric": "recall_at_10"
     },
     {
       "baseline": "FM-ID-only",
-      "ci_high": 0.009561209783499528,
-      "ci_low": 0.007456815191806208,
-      "estimate": 0.008493634848828247,
+      "ci_high": 0.006671287444576132,
+      "ci_low": 0.004963853711164708,
+      "estimate": 0.0058077162867609805,
       "estimate_for": "FM",
       "metric": "ndcg_at_10"
     },
     {
       "baseline": "FM-ID-only",
-      "ci_high": 0.006873679031227937,
-      "ci_low": 0.00512086284394626,
-      "estimate": 0.0059895690996324535,
+      "ci_high": 0.0068110639968347875,
+      "ci_low": 0.004931969035223385,
+      "estimate": 0.005860047907607029,
       "estimate_for": "FM-ID-only",
       "metric": "ndcg_at_10"
     },
     {
       "baseline": "FM-ID-only",
-      "ci_high": 0.0037679688679924145,
-      "ci_low": 0.0012724902385364714,
-      "estimate": 0.0025040657491957937,
+      "ci_high": 0.001179589737400558,
+      "ci_low": -0.0012411229473181338,
+      "estimate": -5.233162084604826e-05,
       "estimate_for": "difference",
       "metric": "ndcg_at_10"
     },
     {
       "baseline": "FM-ID-only",
-      "ci_high": 0.016266466859345092,
-      "ci_low": 0.012591422174763073,
-      "estimate": 0.014402213885059472,
+      "ci_high": 0.011280682759594143,
+      "ci_low": 0.008164329621901775,
+      "estimate": 0.00971814074085739,
       "estimate_for": "FM",
       "metric": "recall_at_10"
     },
     {
       "baseline": "FM-ID-only",
-      "ci_high": 0.012653411152259016,
-      "ci_low": 0.009187606702119353,
-      "estimate": 0.010860928382306664,
+      "ci_high": 0.010404848060668125,
+      "ci_low": 0.007510536409236825,
+      "estimate": 0.008941215735307805,
       "estimate_for": "FM-ID-only",
       "metric": "recall_at_10"
     },
     {
       "baseline": "FM-ID-only",
-      "ci_high": 0.005840459519151195,
-      "ci_low": 0.0012447410723055257,
-      "estimate": 0.003541285502752808,
+      "ci_high": 0.002863817287134617,
+      "ci_low": -0.0012450649105288053,
+      "estimate": 0.0007769250055495846,
       "estimate_for": "difference",
       "metric": "recall_at_10"
     }
@@ -298,7 +298,8 @@
     "batch_size": 1024,
     "budget": 8,
     "early_stopping": false,
-    "features": "user ID, item ID, brand, categories; category L2 normalization; fit catalog vocabulary only",
+    "experiment_version": "temporal_metadata_v2",
+    "features": "user ID, item ID; timestamp-derived item metadata: first observed review year/month; log1p(fit event count)/log1p(1000), log1p(history age days)/log1p(3650), log1p(recency days)/log1p(3650)",
     "grid": {
       "learning_rate": [
         0.05,
@@ -314,8 +315,8 @@
       ]
     },
     "loss": "mean logistic loss; observed rating>=4 positive, observed 1-3 negative, sampled unobserved negative",
-    "metadata_ablation": "fixed additional ID-only training run with selected hyperparameters; diagnostic only, not used for selection",
-    "metadata_assumption": "static crawl-time snapshot; historical availability unverified",
+    "metadata_ablation": "fixed ID-only run at selected metadata-FM hyperparameters; diagnostic only",
+    "metadata_assumption": "No crawl-time fields or review text. Features derive solely from fit IDs and timestamps strictly before the frozen query; no rating values used in metadata.",
     "minimum_items_per_metadata_token": 5,
     "model": "FM",
     "n_epochs": 12,
@@ -330,29 +331,41 @@
     "test_evaluated": false,
     "tie_break": "fewer factors, then smaller learning rate, then larger regularization"
   },
+  "correction_plan_sha256": "9cdc3d3121dcc25c8648325c2a60837e91fe8ec2da7f8af5c52573ae1b240757",
   "diagnostic_ablation_runs": 1,
   "evaluation_batch_size": 128,
   "feature_diagnostics": {
-    "brand_vocabulary": 280,
-    "category_l2_normalization": true,
-    "category_vocabulary": 78,
-    "features": 59402,
-    "fit_items_with_brand": 15474,
-    "fit_items_with_category": 15447,
+    "all_source_timestamps_before_query": true,
+    "features": 59076,
+    "first_month_vocabulary": 12,
+    "first_year_vocabulary": 17,
+    "history_age_days_max": 5923.0,
+    "history_age_days_min": 1.0,
     "item_id_features": 15578,
-    "max_active_item_features": 7,
-    "metadata_assumption": "crawl-time static snapshot; historical availability unverified",
+    "max_active_item_features": 6,
+    "max_source_timestamp": 1451520000,
+    "metadata_assumption": "timestamp is event availability; no historical catalog snapshot required",
+    "metadata_source": "fit item identifiers and review timestamps only",
     "minimum_catalog_items_per_token": 5,
+    "numeric_metadata_features": 3,
+    "numeric_scales": {
+      "log_count": 1000,
+      "log_days": 3650
+    },
+    "query_timestamp": 1451606400,
+    "rating_values_used_in_metadata": false,
+    "representation": "fixed as of stage query for fit reconstruction and recommendation",
+    "snapshot_fields_used": false,
     "user_id_features": 43463,
     "uses_metadata": true
   },
-  "feature_fingerprint": "d7fae237b9f4aced95e25e19e23ab67c11841ff098eafce132df62b2fa39ac78",
+  "feature_fingerprint": "18b149450f4fb73ad9c6dadcaf45e2f1808e09d45a4231d0c5ac036f41b75e4f",
   "id_only_validation_metrics": {
-    "catalog_coverage_at_10": 0.15271536782642187,
-    "evaluation_seconds": 1.5866866249707527,
+    "catalog_coverage_at_10": 0.07921427654384389,
+    "evaluation_seconds": 1.5077794999815524,
     "fallback_rate": 0.0,
-    "ndcg_at_10": 0.0059895690996324535,
-    "recall_at_10": 0.010860928382306664,
+    "ndcg_at_10": 0.005860047907607029,
+    "recall_at_10": 0.008941215735307805,
     "users": 10207
   },
   "input_hashes": {
@@ -360,18 +373,18 @@
     "validation": "2065cb37985b0edabea222a4f945c20f3b7eabf788d79332d04280875080a350"
   },
   "interval_interpretation": "descriptive validation after HPO; no independent test/multiple-comparison claim; ID-only ablation not separately tuned",
-  "metadata_sha256": "f48c350d3142530978f3a23beda57f207033e201d43b443011efaf7f61d49edb",
+  "metadata_source": "train split timestamps only",
   "protocol_sha256": "75423342fdaf3cac15838c4d01b3154d6bb5ab5ed85f1781e97d3daa8db04f66",
   "query_timestamp": 1451606400,
   "source_hashes": {
-    "configs/fm_search.json": "19bd1d8357f13c9b2d36a8e791d90b35bf99963086cfc2ca3851e77e23ee29ff",
+    "configs/fm_search.json": "27f6ccb4981462d7cb50cbffc38ded5e7377ec6d25c5b11eef38f585e44ae62e",
     "data_utils.py": "6085759d607b7fa3806d77df6c6a567ba427ad1fd8b1d111c3ef05bcd2634195",
     "evaluation.py": "346d6394896d19d4245039a49958852633341e1cd35f5e5bdd42d7db2d69baa3",
-    "models/fm.py": "358d815f30fe781d925de984a285aa890b44e951fa64d85b88907e8612d1e073",
+    "models/fm.py": "cb47cf19857607d0d598a0255244f855492b54b01d083905ffc254aaac5bf013",
     "requirements.txt": "aafbccf0e045c3c7f397a00b254433688bbb7c80044e24c2f6791c69cd85723a",
     "scripts/prepare_data.py": "708cce4656015ea568c93d6dbea7e385884c83c78129e65354ddbe48d0ebd309",
     "scripts/tune_ease.py": "e8428c44d31e7fc22827673ca950de590d75c689b4705bbb7294b5b05337f57f",
-    "scripts/tune_fm.py": "95fb113c5c9dc81e8db8c781990087447e0e7cea2211ea1c5d8998319ecf826e",
+    "scripts/tune_fm.py": "cab74d7a3dd4069862b58102e9e539552671edc5055c9b53c01b5d5170df91c5",
     "scripts/tune_ials.py": "02f7fa10b34c727402016ee718828afaaf8ac0ec23b5aae2396196df549be47a"
   },
   "test_evaluated": false,

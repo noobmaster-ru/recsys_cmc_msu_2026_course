@@ -5,6 +5,7 @@
     "resamples": 2000,
     "seed": 42
   },
+  "correction_plan_sha256": "9cdc3d3121dcc25c8648325c2a60837e91fe8ec2da7f8af5c52573ae1b240757",
   "fit": {
     "interactions": 403681,
     "items": 16721,
@@ -18,8 +19,8 @@
     "train": "f5bef58ccdcf2ad23883f4804ed0338bd1d64f9962baa34fd30df0a598951b00",
     "validation": "2065cb37985b0edabea222a4f945c20f3b7eabf788d79332d04280875080a350"
   },
-  "locked_config_sha256": "cc31cc1225836da2cf90a7cf2d0a539f7d611f9dba296ae5fa0812f5a02ae660",
-  "metadata_sha256": "f48c350d3142530978f3a23beda57f207033e201d43b443011efaf7f61d49edb",
+  "locked_config_sha256": "d896cb45c81a15d0a28336d038537ce04396cca653a677d4d0db2a3ed98d3ca7",
+  "metadata_source": "fit split timestamps only",
   "models": {
     "EASE": {
       "regularization": 100.0
@@ -28,8 +29,8 @@
       "batch_size": 1024,
       "learning_rate": 0.05,
       "n_epochs": 12,
-      "n_factors": 32,
-      "regularization": 0.001,
+      "n_factors": 16,
+      "regularization": 1e-05,
       "seed": 42,
       "shuffle_seed": 43
     },
@@ -55,23 +56,24 @@
       "seed": 42
     }
   },
+  "prior_test_already_observed": true,
   "protocol_sha256": "75423342fdaf3cac15838c4d01b3154d6bb5ab5ed85f1781e97d3daa8db04f66",
   "query_timestamp": 1483228800,
   "source_hashes": {
     "data_utils.py": "6085759d607b7fa3806d77df6c6a567ba427ad1fd8b1d111c3ef05bcd2634195",
     "evaluation.py": "346d6394896d19d4245039a49958852633341e1cd35f5e5bdd42d7db2d69baa3",
     "models/ease.py": "77a4345841942692348514e50c6257af5fb5bc55767d87a90317619b01ba19dc",
-    "models/fm.py": "358d815f30fe781d925de984a285aa890b44e951fa64d85b88907e8612d1e073",
+    "models/fm.py": "cb47cf19857607d0d598a0255244f855492b54b01d083905ffc254aaac5bf013",
     "models/ials.py": "02b80d67fd498d1faed0f2d2369c4f22a6d60fdba23b37727aac65d553ee8a8a",
     "models/item_knn.py": "14be9ba2e7662e27fdeee2f9f47cc874fa7739fb71362ab8a1b88c39e1c4b2d5",
     "models/timesvdpp.py": "3fb52e6305dec8a768c95c17648e629253d38c0efb98b29537ffb0b762730fc2",
     "requirements.txt": "aafbccf0e045c3c7f397a00b254433688bbb7c80044e24c2f6791c69cd85723a",
-    "scripts/final_config.py": "0edcf3de54013e8b046cc94bb6ee131e4ff2b06a112a3a5e44ae6176269c06a6",
+    "scripts/final_config.py": "54ae3b5c57cd6bc1ac1f43bc1b8ec1e4f0ce84839e6a6157e8e1c84502f506b7",
     "scripts/prepare_data.py": "708cce4656015ea568c93d6dbea7e385884c83c78129e65354ddbe48d0ebd309",
-    "scripts/run_final_test.py": "10da7b105546df9f696e6819047f0019bdc2e3046a4fc01bf2e5cfba1d6ef584",
+    "scripts/run_final_test.py": "df77892929639bb7b59ae07dde29e08ea56fcd57aaef843ff05a0e2e31808e4b",
     "scripts/tune_ials.py": "02f7fa10b34c727402016ee718828afaaf8ac0ec23b5aae2396196df549be47a"
   },
-  "test_policy": "no hyperparameter, epoch, feature or protocol changes based on test; no diagnostic ablation fits on test",
+  "test_policy": "corrective reevaluation on previously used holdout; after v2 freeze no hyperparameter, epoch, feature or protocol changes; no diagnostic ablation fits on test",
   "validation_reference": "EASE",
   "validation_reports": {
     "EASE": "reports/ease_validation/summary.json",
@@ -82,9 +84,9 @@
   },
   "validation_summary_hashes": {
     "EASE": "0dc7828ab4e2c4011b9ee25dac7abc6ee3675ea985036f660c90fd1fd8065aa1",
-    "FM": "bdfb84abff9a50b42c85ae6b0ee8e366db7edd620c01e8ee5718ff1b2ed1d13d",
+    "FM": "d4af6700ac326ea4c1b96a6532f14c53d43b8d5c997b8393e4f87608104a2a81",
     "ItemKNN": "51ae922ab69f8d6536ef443080f2edb9c8a101867c984f438d807f9727d89c6e",
     "iALS": "56630f140036e549e92ab09ea6f1c99b190291e283139d69e5359507376d146e",
-    "timeSVD++": "199115b4ad432c8a1bf3fe1251e4c264f5faea0149a62d278d99303e08b799a4"
+    "timeSVD++": "88f32f575828bb8e53544927da7a2a82248f712c8d249a49dc759abbc0070091"
   }
 }

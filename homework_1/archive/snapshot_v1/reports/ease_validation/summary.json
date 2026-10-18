@@ -1,0 +1,228 @@
+{
+  "artifact_hashes": {
+    "data/validation/ease/best_per_user.csv.gz": "1560e6d265ff73edad67e40068ae33318498cfc70ca596827fc6ed9490755f41",
+    "data/validation/ease/best_precision_diagonal.npy": "f6c6d8d139d9171d655b69f9ec96f8dd4ed8e0390c87132ca0abcdffbdae4d3a",
+    "data/validation/ease/best_recommendation_indices.npy": "9920cee8b2885d58736b10e082f9c8ecdae0688d4430da0bf25bef2de3971959",
+    "data/validation/ease/best_weights.npy": "02ebd7f73566a51b7e323922f45e56e5e06753853ccfbe9026805585d18c4b27",
+    "reports/ease_validation/bootstrap_vs_baselines.csv": "99b927be3b3005577108028e787e50ac01c91490ab9290edd1f870e4b476de88",
+    "reports/ease_validation/comparison.csv": "198f7ad8c339cdaaf64b8fb7e595de66ed882b1d095fe1528b34b9a8077a73dd",
+    "reports/ease_validation/history_slices.csv": "9423f1abd0428440c7bfe869838c7a71c2d59479f768513dd764b198bce64d0b",
+    "reports/ease_validation/popularity_slices.csv": "17199c72b47ab99d38a23975e8a0b154d918e5f4369889378635a7889e4d8d91",
+    "reports/ease_validation/search_results.csv": "eaddf9534d17c4f79022199daaecbef16951ecf96a8bd352f9c574dc5fe5e5a2"
+  },
+  "baseline_best_params": {
+    "ItemKNN": {
+      "n_neighbors": 100,
+      "shrinkage": 10.0
+    },
+    "iALS": {
+      "alpha": 40.0,
+      "n_factors": 64,
+      "n_iterations": 15,
+      "regularization": 0.1,
+      "seed": 42,
+      "solver_batch_size": 128
+    }
+  },
+  "baseline_summary_hashes": {
+    "ItemKNN": "51ae922ab69f8d6536ef443080f2edb9c8a101867c984f438d807f9727d89c6e",
+    "iALS": "56630f140036e549e92ab09ea6f1c99b190291e283139d69e5359507376d146e"
+  },
+  "baseline_validation_metrics": {
+    "ItemKNN": {
+      "catalog_coverage_at_10": 0.7387983053023495,
+      "evaluation_seconds": 1.2774372919811867,
+      "fallback_rate": 0.05143528950720094,
+      "ndcg_at_10": 0.021111418227279202,
+      "recall_at_10": 0.032179211921279066,
+      "users": 10207
+    },
+    "Popularity": {
+      "catalog_coverage_at_10": 0.0009628963923481833,
+      "evaluation_seconds": 1.2245006670127623,
+      "fallback_rate": 0.0,
+      "ndcg_at_10": 0.005778894685105066,
+      "recall_at_10": 0.010251520657135206,
+      "users": 10207
+    },
+    "iALS": {
+      "catalog_coverage_at_10": 0.14321479008858648,
+      "evaluation_seconds": 1.5827362090349197,
+      "fallback_rate": 0.050259625747036345,
+      "ndcg_at_10": 0.02189326209164422,
+      "recall_at_10": 0.0343600495251381,
+      "users": 10207
+    }
+  },
+  "batch_size": 128,
+  "best_model_diagnostics": {
+    "catalog_items": 15578,
+    "negative_fraction_of_nonzero": 0.46282254927114674,
+    "negative_weights": 110083966,
+    "nonzero_weights": 237853506,
+    "training_objective": 233191.09165001777,
+    "weight_bytes": 1941392672
+  },
+  "best_params": {
+    "regularization": 100.0
+  },
+  "best_validation_metrics": {
+    "catalog_coverage_at_10": 0.4976890486583644,
+    "evaluation_seconds": 1.70573049999075,
+    "fallback_rate": 0.05143528950720094,
+    "ndcg_at_10": 0.023371670270036116,
+    "recall_at_10": 0.03519138375524273,
+    "users": 10207
+  },
+  "bootstrap_intervals": [
+    {
+      "baseline": "ItemKNN",
+      "ci_high": 0.02536597508964278,
+      "ci_low": 0.02148045585867083,
+      "estimate": 0.023371670270036116,
+      "estimate_for": "EASE",
+      "metric": "ndcg_at_10"
+    },
+    {
+      "baseline": "ItemKNN",
+      "ci_high": 0.023026157207767243,
+      "ci_low": 0.01928732284726772,
+      "estimate": 0.021111418227279195,
+      "estimate_for": "ItemKNN",
+      "metric": "ndcg_at_10"
+    },
+    {
+      "baseline": "ItemKNN",
+      "ci_high": 0.0032866242063402827,
+      "ci_low": 0.00127884655500596,
+      "estimate": 0.0022602520427569203,
+      "estimate_for": "difference",
+      "metric": "ndcg_at_10"
+    },
+    {
+      "baseline": "ItemKNN",
+      "ci_high": 0.038147095765381486,
+      "ci_low": 0.03219672820854509,
+      "estimate": 0.03519138375524273,
+      "estimate_for": "EASE",
+      "metric": "recall_at_10"
+    },
+    {
+      "baseline": "ItemKNN",
+      "ci_high": 0.03509215406479635,
+      "ci_low": 0.029378963937356943,
+      "estimate": 0.032179211921279066,
+      "estimate_for": "ItemKNN",
+      "metric": "recall_at_10"
+    },
+    {
+      "baseline": "ItemKNN",
+      "ci_high": 0.00487011070871518,
+      "ci_low": 0.0011569416613937066,
+      "estimate": 0.003012171833963663,
+      "estimate_for": "difference",
+      "metric": "recall_at_10"
+    },
+    {
+      "baseline": "iALS",
+      "ci_high": 0.02536597508964278,
+      "ci_low": 0.02148045585867083,
+      "estimate": 0.023371670270036116,
+      "estimate_for": "EASE",
+      "metric": "ndcg_at_10"
+    },
+    {
+      "baseline": "iALS",
+      "ci_high": 0.023881833187083173,
+      "ci_low": 0.020066085501484515,
+      "estimate": 0.021893262091644217,
+      "estimate_for": "iALS",
+      "metric": "ndcg_at_10"
+    },
+    {
+      "baseline": "iALS",
+      "ci_high": 0.003203513509832981,
+      "ci_low": -0.00020209077832905256,
+      "estimate": 0.001478408178391899,
+      "estimate_for": "difference",
+      "metric": "ndcg_at_10"
+    },
+    {
+      "baseline": "iALS",
+      "ci_high": 0.038147095765381486,
+      "ci_low": 0.03219672820854509,
+      "estimate": 0.03519138375524273,
+      "estimate_for": "EASE",
+      "metric": "recall_at_10"
+    },
+    {
+      "baseline": "iALS",
+      "ci_high": 0.037376002885563815,
+      "ci_low": 0.0315272628990187,
+      "estimate": 0.0343600495251381,
+      "estimate_for": "iALS",
+      "metric": "recall_at_10"
+    },
+    {
+      "baseline": "iALS",
+      "ci_high": 0.0035066199343159977,
+      "ci_low": -0.0019233185756937538,
+      "estimate": 0.0008313342301046259,
+      "estimate_for": "difference",
+      "metric": "recall_at_10"
+    }
+  ],
+  "cohort": {
+    "catalog_items": 15578,
+    "evaluation_users": 10207,
+    "new_item_interactions": 16949,
+    "new_user_interactions": 28223,
+    "relevant_interactions": 25646,
+    "seen_relevant_items_removed": 0,
+    "users_excluded_for_fewer_than_k_candidates": 0
+  },
+  "cohort_fingerprint": "1f05dcdbee18a4113fc31429695c475dfd87013936b4dd4668102c90921c9e9e",
+  "completed_trials": 7,
+  "configuration": {
+    "approximation": "none; full dense signed matrix, no pruning or clipping",
+    "budget": 7,
+    "dtype": "float64",
+    "grid": {
+      "regularization": [
+        1.0,
+        10.0,
+        30.0,
+        100.0,
+        300.0,
+        1000.0,
+        10000.0
+      ]
+    },
+    "model": "EASE",
+    "objective": "||X-XB||_F^2 + lambda*||B||_F^2, diag(B)=0; unnormalized sum loss",
+    "preference": "X_ui=1 for fit rating >=4; otherwise 0",
+    "selection": "maximum validation macro NDCG@10",
+    "test_evaluated": false,
+    "tie_break": "larger regularization"
+  },
+  "input_hashes": {
+    "train": "f5bef58ccdcf2ad23883f4804ed0338bd1d64f9962baa34fd30df0a598951b00",
+    "validation": "2065cb37985b0edabea222a4f945c20f3b7eabf788d79332d04280875080a350"
+  },
+  "interval_interpretation": "descriptive validation after HPO; no independent test or multiple-comparison claim",
+  "protocol_sha256": "75423342fdaf3cac15838c4d01b3154d6bb5ab5ed85f1781e97d3daa8db04f66",
+  "query_timestamp": 1451606400,
+  "source_hashes": {
+    "configs/ease_search.json": "3eff4ef08282a4666f99e0e8652c5eec57f0290a167bfb0b292c854fd1a242db",
+    "data_utils.py": "6085759d607b7fa3806d77df6c6a567ba427ad1fd8b1d111c3ef05bcd2634195",
+    "evaluation.py": "346d6394896d19d4245039a49958852633341e1cd35f5e5bdd42d7db2d69baa3",
+    "models/ease.py": "77a4345841942692348514e50c6257af5fb5bc55767d87a90317619b01ba19dc",
+    "requirements.txt": "aafbccf0e045c3c7f397a00b254433688bbb7c80044e24c2f6791c69cd85723a",
+    "scripts/prepare_data.py": "708cce4656015ea568c93d6dbea7e385884c83c78129e65354ddbe48d0ebd309",
+    "scripts/tune_ease.py": "e8428c44d31e7fc22827673ca950de590d75c689b4705bbb7294b5b05337f57f",
+    "scripts/tune_ials.py": "02f7fa10b34c727402016ee718828afaaf8ac0ec23b5aae2396196df549be47a"
+  },
+  "test_evaluated": false,
+  "timing_note": "Prior CF/iALS times reused; indexing excluded from model fit, hardware/run noise applies",
+  "training_data": "train only; no train+validation refit"
+}

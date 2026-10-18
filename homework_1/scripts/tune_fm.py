@@ -25,30 +25,25 @@ def prepare(root):
         raise ValueError('EASE cohort or inputs differ')
     for group in ('source_hashes','artifact_hashes'):
         for p,digest in ease[group].items():
+            # Compare verified saved baseline rankings; dense old weights are not used.
+            if group=='artifact_hashes' and p.startswith('data/') and not any(k in p for k in ['per_user','recommendation_indices']):continue
             if sha256(root/p)!=digest:raise ValueError(f'Changed EASE artifact: {p}')
     results['EASE']=load_result(root/'data/validation/ease','best',ease['best_validation_metrics'],context)
-    meta_path=root/'data/processed/items.jsonl.gz';meta_hash=sha256(meta_path)
-    if meta_hash!=protocol['input_checksums']['data/processed/items.jsonl.gz']['sha256']:
-        raise ValueError('Metadata source checksum differs')
-    fit_catalog=set(data.item_ids);records={}
-    with gzip.open(meta_path,'rt',encoding='utf-8') as stream:
-        for line in stream:
-            record=json.loads(line)
-            if record['item_id'] in fit_catalog:records[record['item_id']]=record
-    features=MetadataFeatures.from_items(data,records,minimum_items=config['minimum_items_per_metadata_token'])
     frame=pd.read_csv(root/protocol['splits']['train']['path'],dtype={'user_id':'string','item_id':'string','rating':'int8','timestamp':'int64'})
+    features=MetadataFeatures.from_history(data,frame,context.query_timestamp,minimum_items=config['minimum_items_per_metadata_token'])
     training=sample_training(data,frame,negatives_per_positive=config['negatives_per_positive'],seed=config['negative_sampling_seed'])
     sources=['models/fm.py','scripts/tune_fm.py','scripts/tune_ease.py','scripts/tune_ials.py',
              'scripts/prepare_data.py','data_utils.py','evaluation.py','configs/fm_search.json','requirements.txt']
     plan={'configuration':config,'input_hashes':previous_plan['input_hashes'],
-        'metadata_sha256':meta_hash,'source_hashes':{p:sha256(root/p) for p in sources},
+        'correction_plan_sha256':sha256(root/'reports/correction_plan.json'),
+        'metadata_source':'train split timestamps only','source_hashes':{p:sha256(root/p) for p in sources},
         'protocol_sha256':previous_plan['protocol_sha256'],'cohort_fingerprint':context.fingerprint,
         'cohort':context.diagnostics,'query_timestamp':context.query_timestamp,
         'baseline_summary_hashes':{**previous_plan['baseline_summary_hashes'],'EASE':sha256(path)},
         'baseline_best_params':{**previous_plan['baseline_best_params'],'EASE':ease['best_params']},
         'feature_fingerprint':features.fingerprint,'feature_diagnostics':features.diagnostics,
         'training_examples':training[3],'test_evaluated':False,'training_data':'train only, no train+validation refit'}
-    return protocol,config,data,context,results,features,training,records,plan
+    return protocol,config,data,context,results,features,training,frame,plan
 
 
 def assemble(output,summary,context,results,cached):
@@ -104,11 +99,11 @@ def run_validation_search(root=ROOT,*,reuse_completed=False,batch_size=128):
         del model
     results['FM']=best
     # Fixed diagnostic ablation, not an additional HPO candidate or selection rule.
-    id_features=MetadataFeatures.from_items(data,records_meta,minimum_items=config['minimum_items_per_metadata_token'],use_metadata=False)
+    id_features=MetadataFeatures.from_history(data,records_meta,context.query_timestamp,minimum_items=config['minimum_items_per_metadata_token'],use_metadata=False)
     print('Diagnostic ID-only ablation at selected metadata-FM hyperparameters ...',flush=True)
     started=perf_counter();id_model=FM(**best_params).fit(data,id_features,training);id_seconds=perf_counter()-started
     id_result=evaluate_model(id_model,context,batch_size=batch_size)
-    pd.DataFrame([{'features':'IDs + brand + categories',**best.metrics,'fit_seconds':best_seconds},
+    pd.DataFrame([{'features':'IDs + dated item metadata',**best.metrics,'fit_seconds':best_seconds},
                   {'features':'IDs only (diagnostic)',**id_result.metrics,'fit_seconds':id_seconds}]).to_csv(output/'metadata_ablation.csv',index=False)
     pd.DataFrame(id_model.curve_).to_csv(output/'ablation_training_curve.csv',index=False)
     with deterministic_gzip(local/'id_only_per_user.csv.gz') as stream:id_result.per_user.to_csv(stream,lineterminator='\n')

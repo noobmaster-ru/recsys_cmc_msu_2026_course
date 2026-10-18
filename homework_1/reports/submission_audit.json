@@ -2,22 +2,27 @@
   "assignment_sha256": "aae98fdfe45346604a456ac60766ddd642bcadbc0535304e3f1c0c5f330b133b",
   "student": "Козлов Кирилл Андреевич",
   "checks": {
-    "unit_tests_passed": 50,
+    "unit_tests_passed": 51,
     "notebook_executed_code_cells": 66,
     "notebook_error_outputs": 0,
     "notebook_embedded_figures": 41,
     "aggregate_notebook_without_data_or_weights": "passed in isolated copy",
     "full_notebook_with_prepared_data": "passed in isolated copy",
-    "original_training_source_hashes": "verified",
-    "original_test_results": "unchanged",
-    "five_refits_before_test_access_journal": "verified",
-    "fresh_full_hyperparameter_search_during_this_audit": "not repeated; original evidence retained",
-    "relocated_layout_tests": "passed: all 50 unit tests and all 66 notebook code cells after moving into homework_1",
-    "readme_local_links": "both repository index and homework README verified"
+    "original_training_source_hashes": "original four model implementations unchanged; v2 FM implementation pinned before HPO",
+    "original_test_results": "v1 preserved in archive; new v2 run explicitly corrective",
+    "five_refits_before_test_access_journal": "verified for v2 corrective run",
+    "fresh_full_hyperparameter_search_during_this_audit": "FM eight trials + diagnostic ID-only rerun; original four validation searches retained",
+    "relocated_layout_tests": "v2: all 51 tests and all 66 notebook code cells passed in homework_1",
+    "readme_local_links": "both repository index and homework README verified",
+    "independent_corrective_ranking_rows_verified": 57126,
+    "independent_fm_full_formula_full_catalog_users": 3,
+    "four_original_model_test_metrics_unchanged": true,
+    "corrective_fit_before_test_journal": "verified: all five refits complete before v2 test unseal"
   },
   "qualifications": {
     "seminar_dataset_exclusion": "verified against all published seminar notebooks and supporting scripts in branch 26f at commit c514701f9275fb6020c6382f0029ea92ab509a72; Amazon absent",
-    "historical_metadata_availability": "OPEN REQUIREMENT: brand/category historical availability is unverified; fit-only vocabulary is insufficient; instructor acceptance or a separately specified corrective experiment is required"
+    "historical_metadata_availability": "RESOLVED in temporal_metadata_v2: item metadata use only fit IDs/timestamps strictly before query; snapshot fields and review text excluded",
+    "test_independence": "Test already observed in snapshot_v1; v2 is corrective reevaluation, not a new independent holdout"
   },
   "seminar_dataset_check": {
     "checked_date": "2026-10-18",
@@ -43,12 +48,27 @@
     "amazon_reviews_video_games_found": false
   },
   "submission_readiness": {
-    "status": "conditional_not_strictly_verified",
-    "open_requirements": [
-      "FM historical metadata availability"
-    ],
-    "other_critical_defects_found": false,
-    "experiment_changes_during_relocation": "none; model sources, protocol, selected hyperparameters and metric evidence preserved",
-    "layout": "homework_1 contains the assignment solution; root README is the course index"
+    "status": "complete_with_explicit_evaluation_limitations",
+    "open_requirements": [],
+    "layout": "homework_1 contains active solution and archive/snapshot_v1 contains prior code/reports",
+    "experiment_changes": "FM metadata replaced, fixed eight-trial validation repeated, all five models refitted and test reevaluated; no test-based tuning",
+    "test_previously_used": true
+  },
+  "correction_plan_sha256": "9cdc3d3121dcc25c8648325c2a60837e91fe8ec2da7f8af5c52573ae1b240757",
+  "feature_availability": {
+    "validation": {
+      "max_source_timestamp": 1451520000,
+      "query_timestamp": 1451606400,
+      "all_source_timestamps_before_query": true,
+      "snapshot_fields_used": false,
+      "rating_values_used_in_metadata": false
+    },
+    "test": {
+      "max_source_timestamp": 1483142400,
+      "query_timestamp": 1483228800,
+      "all_source_timestamps_before_query": true,
+      "snapshot_fields_used": false,
+      "rating_values_used_in_metadata": false
+    }
   }
 }

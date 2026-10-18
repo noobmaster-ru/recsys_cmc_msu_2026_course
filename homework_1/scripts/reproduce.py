@@ -40,6 +40,7 @@ def main():
     (target/'reports').mkdir()
     shutil.copy2(source/'reports/evaluation_protocol.json',target/'reports/evaluation_protocol.json')
     shutil.copy2(source/'reports/presentation_diagnostics.json',target/'reports/presentation_diagnostics.json')
+    shutil.copy2(source/'reports/correction_plan.json',target/'reports/correction_plan.json')
     env = dict(os.environ)
     env['JUPYTER_PATH'] = str(Path(sys.prefix)/'share/jupyter')+os.pathsep+env.get('JUPYTER_PATH','')
     def run(*args):
