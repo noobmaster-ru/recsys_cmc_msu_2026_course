@@ -32,11 +32,11 @@
   "submission_readiness": {
     "status": "complete_with_explicit_evaluation_limitations",
     "open_requirements": [],
-    "layout": "homework_1 contains active solution and archive/snapshot_v1 contains prior code/reports",
+    "layout": "homework_1 active v2; archive/snapshot_v1 prior solution; archive/fm_extended_v3 validation research",
     "experiment_changes": "FM metadata replaced, fixed eight-trial validation repeated, all five models refitted and test reevaluated; no test-based tuning",
     "test_previously_used": true,
     "active_final_experiment": "temporal_metadata_v2",
-    "pending_research": "FM v3 winner has validation results only and has not replaced final v2 settings/results"
+    "pending_research": "none; v3 archived, v2 retained for submission"
   },
   "correction_plan_sha256": "9cdc3d3121dcc25c8648325c2a60837e91fe8ec2da7f8af5c52573ae1b240757",
   "feature_availability": {
@@ -74,6 +74,38 @@
     "corrective_fit_before_test_journal": "verified: all five refits complete before v2 test unseal"
   },
   "checks": {
+    "scope": "Presentation-only archival; v2 main notebook code and cached outputs restored unchanged; no retraining or test evaluation",
+    "notebook_executed_code_cells": 66,
+    "notebook_embedded_figures": 41,
+    "notebook_error_outputs": 0,
+    "archived_v3_code_cells": 6,
+    "archived_v3_embedded_figures": 3,
+    "v2_final_configuration_changed": false,
+    "v2_model_and_feature_code_changed": false,
+    "test_reevaluated_during_archival": false,
+    "targeted_archival_unit_tests_passed": 8,
+    "archived_notebook_render_without_data_or_final_reports": "passed in isolated copy; main notebook bytes unchanged",
+    "v2_code_cells_and_cached_outputs": "identical to commit 1ff836e",
+    "readme_local_links": "verified",
+    "manifest_hashes": "verified"
+  },
+  "validation_extension": {
+    "version": "fm_extended_validation_v3",
+    "completed_configurations": 16,
+    "selection_validation_evaluations": 60,
+    "training_epochs": 384,
+    "diagnostic_validation_reevaluations_after_selection": 4,
+    "winner": "06_bce_64",
+    "checkpoint_epoch": 4,
+    "historical_features": "unchanged temporal_metadata_v2, train-only",
+    "test_evaluated": false,
+    "verification": "reports/fm_extended_validation/verification.json",
+    "discarded_debug_run": "archive/fm_extended_pre_fix; BPR no-positive-history fallback corrected; grid/checkpoints unchanged; additional debug compute excluded from selection",
+    "status": "archived; not adopted in submission",
+    "notebook": "archive/fm_extended_v3/experiments.ipynb",
+    "archive_reason": "higher validation NDCG/Recall but coverage decreased from 6.77% to 0.31% and tail Recall became zero; decision made after viewing validation"
+  },
+  "archived_v3_checks": {
     "scope": "FM v3 validation-only extension; historical v2 full audit retained separately",
     "validation_only_unit_tests_passed": 59,
     "unit_tests_skipped": "test_reporting, which opens real frozen final reports",
@@ -87,18 +119,5 @@
     "historical_notebook_code_outputs_changed": false,
     "test_evaluated_in_v3": false,
     "real_train_validation_refit_in_v3": false
-  },
-  "validation_extension": {
-    "version": "fm_extended_validation_v3",
-    "completed_configurations": 16,
-    "selection_validation_evaluations": 60,
-    "training_epochs": 384,
-    "diagnostic_validation_reevaluations_after_selection": 4,
-    "winner": "06_bce_64",
-    "checkpoint_epoch": 4,
-    "historical_features": "unchanged temporal_metadata_v2, train-only",
-    "test_evaluated": false,
-    "verification": "reports/fm_extended_validation/verification.json",
-    "discarded_debug_run": "archive/fm_extended_pre_fix; BPR no-positive-history fallback corrected; grid/checkpoints unchanged; additional debug compute excluded from selection"
   }
 }

@@ -21,6 +21,8 @@ def main():
     os.environ["JUPYTER_PATH"] = os.pathsep.join(
         filter(None, (kernel_path, os.environ.get("JUPYTER_PATH"))))
     path = root / "experiments.ipynb"
+    if args.section == 'fm_extended':
+        path = root / "archive/fm_extended_v3/experiments.ipynb"
     notebook = nbformat.read(path, as_version=4)
     if args.section != 'all':
         tags = {'cf','ials','ease','fm','timesvdpp','final'} if args.section == 'reports' else {args.section}
