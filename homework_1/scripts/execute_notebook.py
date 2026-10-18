@@ -11,7 +11,7 @@ from nbclient import NotebookClient
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--section', choices=['all', 'reports', 'cf', 'ials', 'ease', 'fm', 'timesvdpp', 'final'], default='reports',
+    parser.add_argument('--section', choices=['all', 'reports', 'cf', 'ials', 'ease', 'fm', 'timesvdpp', 'final', 'fm_extended'], default='reports',
                         help='reports (default): render all committed model reports; all: also recompute EDA (download data first); individual sections preserve prior outputs and block raw test IO')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]

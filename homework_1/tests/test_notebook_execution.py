@@ -11,6 +11,9 @@ import nbformat
 
 
 class NotebookExecutionTests(unittest.TestCase):
+    def test_fm_extended_section_preserves_all_historical_results(self):
+        self.check_section('fm_extended')
+
     def test_ials_section_preserves_old_outputs_and_blocks_test_file(self):
         self.check_section('ials')
 

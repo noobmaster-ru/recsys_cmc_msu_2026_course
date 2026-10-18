@@ -1,24 +1,6 @@
 {
   "assignment_sha256": "aae98fdfe45346604a456ac60766ddd642bcadbc0535304e3f1c0c5f330b133b",
   "student": "Козлов Кирилл Андреевич",
-  "checks": {
-    "unit_tests_passed": 51,
-    "notebook_executed_code_cells": 66,
-    "notebook_error_outputs": 0,
-    "notebook_embedded_figures": 41,
-    "aggregate_notebook_without_data_or_weights": "passed in isolated copy",
-    "full_notebook_with_prepared_data": "passed in isolated copy",
-    "original_training_source_hashes": "original four model implementations unchanged; v2 FM implementation pinned before HPO",
-    "original_test_results": "v1 preserved in archive; new v2 run explicitly corrective",
-    "five_refits_before_test_access_journal": "verified for v2 corrective run",
-    "fresh_full_hyperparameter_search_during_this_audit": "FM eight trials + diagnostic ID-only rerun; original four validation searches retained",
-    "relocated_layout_tests": "v2: all 51 tests and all 66 notebook code cells passed in homework_1",
-    "readme_local_links": "both repository index and homework README verified",
-    "independent_corrective_ranking_rows_verified": 57126,
-    "independent_fm_full_formula_full_catalog_users": 3,
-    "four_original_model_test_metrics_unchanged": true,
-    "corrective_fit_before_test_journal": "verified: all five refits complete before v2 test unseal"
-  },
   "qualifications": {
     "seminar_dataset_exclusion": "verified against all published seminar notebooks and supporting scripts in branch 26f at commit c514701f9275fb6020c6382f0029ea92ab509a72; Amazon absent",
     "historical_metadata_availability": "RESOLVED in temporal_metadata_v2: item metadata use only fit IDs/timestamps strictly before query; snapshot fields and review text excluded",
@@ -52,7 +34,9 @@
     "open_requirements": [],
     "layout": "homework_1 contains active solution and archive/snapshot_v1 contains prior code/reports",
     "experiment_changes": "FM metadata replaced, fixed eight-trial validation repeated, all five models refitted and test reevaluated; no test-based tuning",
-    "test_previously_used": true
+    "test_previously_used": true,
+    "active_final_experiment": "temporal_metadata_v2",
+    "pending_research": "FM v3 winner has validation results only and has not replaced final v2 settings/results"
   },
   "correction_plan_sha256": "9cdc3d3121dcc25c8648325c2a60837e91fe8ec2da7f8af5c52573ae1b240757",
   "feature_availability": {
@@ -70,5 +54,51 @@
       "snapshot_fields_used": false,
       "rating_values_used_in_metadata": false
     }
+  },
+  "historical_v2_checks": {
+    "unit_tests_passed": 51,
+    "notebook_executed_code_cells": 66,
+    "notebook_error_outputs": 0,
+    "notebook_embedded_figures": 41,
+    "aggregate_notebook_without_data_or_weights": "passed in isolated copy",
+    "full_notebook_with_prepared_data": "passed in isolated copy",
+    "original_training_source_hashes": "original four model implementations unchanged; v2 FM implementation pinned before HPO",
+    "original_test_results": "v1 preserved in archive; new v2 run explicitly corrective",
+    "five_refits_before_test_access_journal": "verified for v2 corrective run",
+    "fresh_full_hyperparameter_search_during_this_audit": "FM eight trials + diagnostic ID-only rerun; original four validation searches retained",
+    "relocated_layout_tests": "v2: all 51 tests and all 66 notebook code cells passed in homework_1",
+    "readme_local_links": "both repository index and homework README verified",
+    "independent_corrective_ranking_rows_verified": 57126,
+    "independent_fm_full_formula_full_catalog_users": 3,
+    "four_original_model_test_metrics_unchanged": true,
+    "corrective_fit_before_test_journal": "verified: all five refits complete before v2 test unseal"
+  },
+  "checks": {
+    "scope": "FM v3 validation-only extension; historical v2 full audit retained separately",
+    "validation_only_unit_tests_passed": 59,
+    "unit_tests_skipped": "test_reporting, which opens real frozen final reports",
+    "notebook_executed_code_cells": 71,
+    "notebook_embedded_figures": 44,
+    "notebook_error_outputs": 0,
+    "validation_rankings_independently_verified": 10207,
+    "full_fm_catalog_oracles": 3,
+    "v2_model_and_feature_code_changed": false,
+    "v2_final_configuration_changed": false,
+    "historical_notebook_code_outputs_changed": false,
+    "test_evaluated_in_v3": false,
+    "real_train_validation_refit_in_v3": false
+  },
+  "validation_extension": {
+    "version": "fm_extended_validation_v3",
+    "completed_configurations": 16,
+    "selection_validation_evaluations": 60,
+    "training_epochs": 384,
+    "diagnostic_validation_reevaluations_after_selection": 4,
+    "winner": "06_bce_64",
+    "checkpoint_epoch": 4,
+    "historical_features": "unchanged temporal_metadata_v2, train-only",
+    "test_evaluated": false,
+    "verification": "reports/fm_extended_validation/verification.json",
+    "discarded_debug_run": "archive/fm_extended_pre_fix; BPR no-positive-history fallback corrected; grid/checkpoints unchanged; additional debug compute excluded from selection"
   }
 }

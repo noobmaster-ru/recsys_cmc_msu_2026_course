@@ -1,0 +1,10 @@
+{
+  "criterion": "top 4 distinct configurations by their best stage-1 checkpoint under the selection rule; continue epoch 12 state with AdaGrad accumulators and shuffle RNG",
+  "promoted": [
+    "06_bce_64",
+    "04_bce_32",
+    "07_bce_eight_negatives",
+    "03_bce_small_step"
+  ],
+  "stage1_results_sha256": "2437fcc4478799daeda4539d1501e9f260a6caac98adf1a47bab4beeec2d4cdb"
+}

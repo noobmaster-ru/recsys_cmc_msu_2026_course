@@ -1,0 +1,15 @@
+{
+  "tests_passed": 59,
+  "scope": "all discovered tests except test_reporting (which opens real frozen final reports)",
+  "actual_forbidden_reads": 0,
+  "source_hashes": {
+    "tests/test_fm_training.py": "435e2f1f6eda91df1e1def31a9d071b6ee2901cb389f80cc5d0f5df2a6b765cb",
+    "tests/test_notebook_execution.py": "d105563350206174a319ae8aa0813ffe1d2d2bacaf01c2f8af5052a41ff13059",
+    "models/fm_training.py": "e8196e9f379d47cc2bfc95aab627bf4dfe7f4fb923447335b3d4e926445c373b",
+    "scripts/tune_fm_extended.py": "3e3f1bb96cfa783b2b147e9d4417c5fe870268d8716b65808b47e77f1f870ffe",
+    "scripts/fm_extended_reporting.py": "95ca19a28696a1f865055973909dae1abf05ff23e6735d16508cc0c83148f4e8",
+    "tests/test_fm_extended_reporting.py": "d5416ab590b594466959e47eb1dddc781598b0262e8fa029c6dc8662834c5246"
+  },
+  "test_evaluated": false,
+  "synthetic_test_fixtures": "unit tests use toy heldout data only; no real test or final reports read"
+}
