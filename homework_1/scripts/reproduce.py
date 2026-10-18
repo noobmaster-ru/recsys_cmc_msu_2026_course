@@ -27,7 +27,10 @@ def main():
     args = parser.parse_args()
     source = Path(__file__).resolve().parents[1]
     target = args.output.expanduser().resolve()
-    if target == source or source in target.parents or target.exists():
+    # A homework lives inside a multi-homework Git repository. Keep generated
+    # data/weights outside that repository, including sibling homework folders.
+    repository = next((p for p in [source, *source.parents] if (p/'.git').exists()), source)
+    if target == repository or repository in target.parents or target.exists():
         parser.error('Output must be a new directory outside the source repository')
     target.mkdir(parents=True)
     for folder in ['models','scripts','configs']:

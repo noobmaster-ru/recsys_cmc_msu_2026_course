@@ -45,5 +45,20 @@ class ReportingTests(unittest.TestCase):
             self.assertEqual(marker.read_text(),'keep')
 
 
+    def test_reproduction_refuses_a_sibling_directory_inside_git_repository(self):
+        with tempfile.TemporaryDirectory() as temp:
+            repository = Path(temp)
+            (repository/'.git').mkdir()
+            scripts = repository/'homework_1/scripts'
+            scripts.mkdir(parents=True)
+            shutil.copy2(ROOT/'scripts/reproduce.py',scripts/'reproduce.py')
+            target = repository/'generated-data'
+            run = subprocess.run([sys.executable,str(scripts/'reproduce.py'),'--output',str(target)],
+                                 capture_output=True,text=True,timeout=10)
+            self.assertNotEqual(run.returncode,0)
+            self.assertIn('outside the source repository',run.stderr)
+            self.assertFalse(target.exists())
+
+
 if __name__ == '__main__':
     unittest.main()
