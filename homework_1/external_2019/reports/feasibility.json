@@ -1,0 +1,89 @@
+{
+  "source": {
+    "url": "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_2023/benchmark/0core/rating_only/Video_Games.csv.gz",
+    "bytes": 114798907,
+    "sha256": "30692f9806e33a7b5d8b599b73d7ca33dbfefb0abdfc1578052a101f2e64b3cd",
+    "headers": {
+      "Content-Length": "114798907",
+      "Last-Modified": "Thu, 16 Jan 2025 20:43:51 GMT",
+      "ETag": "\"6d7b13b-62bd8da0d8cfa\""
+    }
+  },
+  "selection_plan_sha256": "78e98d0a86a507988191ed4e02ed944cdc06101d360c7e9571687f5f1385d794",
+  "source_rows_by_period": {
+    "fit_before_2019": 2555413,
+    "test_2019": 441337,
+    "after_2019": 1558750
+  },
+  "raw_fit_unique_pairs": {
+    "events": 2555413,
+    "users": 1494609,
+    "items": 79754
+  },
+  "duplicate_fit_rows_removed": 0,
+  "selection": {
+    "initial_fit_core_events": 520585,
+    "initial_core_removed_per_round": [
+      1958306,
+      44481,
+      24101,
+      4058,
+      2552,
+      561,
+      460,
+      162,
+      111,
+      20,
+      12,
+      4
+    ],
+    "post_item_cap_removed_per_round": [],
+    "user_budget_applied": false,
+    "post_user_budget_removed_per_round": []
+  },
+  "selected_fit": {
+    "events": 520585,
+    "users": 59204,
+    "items": 15650,
+    "minimum_user_events": 5,
+    "minimum_item_events": 5,
+    "positive_fit_events_rating_ge_4": 419187,
+    "first_timestamp": 940628595,
+    "last_timestamp": 1546300759,
+    "query_timestamp": 1546300800,
+    "all_sources_strictly_before_query": true,
+    "ease_single_float64_matrix_GiB": 1.8248148262500763
+  },
+  "test_2019_structure_only": {
+    "all_category_events": 441337,
+    "unique_users_all_ratings": 341461,
+    "unique_items_all_ratings": 34244,
+    "events_with_known_user": 19253,
+    "events_with_known_item": 240264,
+    "events_with_both_known": 10092,
+    "users_with_both_known_events": 5536,
+    "seen_fit_pairs_in_warm_test": 0,
+    "available_unseen_events_all_ratings": 10092,
+    "users_with_at_least_one_available_event_and_10_candidates": 5536,
+    "relevance_conditioned_user_count": null,
+    "positive_test_event_count": null,
+    "note": "These counts include all ratings; eligible ranking users may be fewer. No test label analysis or model metrics."
+  },
+  "assignment_size_checks": {
+    "fit_at_least_100000_events": true,
+    "fit_at_least_1000_users": true,
+    "fit_at_least_1000_items": true,
+    "selected_fit_plus_selected_test_at_most_2000000_events": true
+  },
+  "artifacts": {
+    "data/Video_Games_0core_2023.csv.gz": "30692f9806e33a7b5d8b599b73d7ca33dbfefb0abdfc1578052a101f2e64b3cd",
+    "data/fit_before_2019.csv.gz": "1a52042dbcd7929ed53b2e5a47e95be3443c72030b92f08b07801fe5071ebe63",
+    "data/test_2019_all.csv.gz": "97fe5142ba4242256fef1e6e2f697af01447028db12f4f7968fd37059887d066",
+    "data/test_2019_selected.csv.gz": "00b937e03ad108dedc52bca7c338bab011b2b3d18847fb00b3bc935c8d01d8f9"
+  },
+  "models_trained": false,
+  "test_recommendation_metrics_computed": false,
+  "test_labels_used_for_selection": false,
+  "test_labels_analyzed": false,
+  "protected_v2_files_verified_unchanged": 118
+}
