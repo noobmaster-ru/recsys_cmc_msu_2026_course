@@ -8,8 +8,10 @@
   "bootstrap_unit_tests_passed": 5,
   "source_commit": "3cb3e93bed3fb789ed01c9035a36643d2fbc4076",
   "bootstrap_source_sha256": "d7e19e3e7d80eaaf5058eeb492f5d7663ea0ff8954594bb60dcb7d1494c30795",
-  "notebook_sha256": "5f0c1b6d803bcf75db11881b02fafd29dce8d804b7467f135a3ef44b3206a444",
+  "notebook_sha256": "ec25109f34c19d4209e7e7d7940774c8c2dc32912756f5ad77bc684838544bb2",
   "main_unit_tests_passed": 67,
   "external_checks_passed": 7,
-  "hosted_colab_runtime_test": "requires Google sign-in in available browser; notebook opens, runtime execution not performed"
+  "hosted_colab_runtime_test": "requires Google sign-in in available browser; notebook opens, runtime execution not performed",
+  "colab_launch_commit": "2a036b40abbd65d2a562cf0294ec2dcc9f71a703",
+  "launch_link_policy": "pin tested notebook version to avoid stale branch cache in Colab"
 }

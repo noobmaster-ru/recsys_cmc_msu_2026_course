@@ -8,7 +8,7 @@ ItemKNN, iALS, EASE, FM и timeSVD++ с нуля.
 
 | Эксперимент | Материалы |
 |---|---|
-| Amazon Reviews 2018 Video Games — основной, v2 | [README](homework_1/README.md) · [Ноутбук](homework_1/experiments.ipynb) · [Google Colab](https://colab.research.google.com/github/noobmaster-ru/recsys_cmc_msu_2026_course/blob/main/homework_1/experiments.ipynb) |
+| Amazon Reviews 2018 Video Games — основной, v2 | [README](homework_1/README.md) · [Ноутбук](homework_1/experiments.ipynb) · [Google Colab](https://colab.research.google.com/github/noobmaster-ru/recsys_cmc_msu_2026_course/blob/2a036b40abbd65d2a562cf0294ec2dcc9f71a703/homework_1/experiments.ipynb) |
 | Amazon Reviews 2023 Video Games — внешний test за 2019 год | [README](homework_1/external_2019/README.md) · [Ноутбук](homework_1/external_2019/experiments.ipynb) |
 
 v1/v2 — версии эксперимента на данных 2018 года. Внешняя оценка использует настройки v2.
