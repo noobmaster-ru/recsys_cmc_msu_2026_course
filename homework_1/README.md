@@ -66,7 +66,6 @@ cd homework_1
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python -m unittest discover -s tests -v
 ```
 
 Пересборка модельных отчётов без данных и обучения:

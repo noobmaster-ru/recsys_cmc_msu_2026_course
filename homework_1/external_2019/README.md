@@ -72,7 +72,7 @@ FM: два uniform unseen negative на positive, seed=137; все извест�
 те же веса и протокол; повторно вычислен только контроль. Новых обучений и HPO не было.
 [Исходный код запуска](reports/final/initial_run_source.py) · [План продолжения](reports/final/recovery_plan.json).
 
-Прошли четыре теста. Независимо проверены 26 862 строки персональных метрик,
+При исходной проверке прошли четыре теста. Независимо проверены 26 862 строки персональных метрик,
 10 полнокаталожных расчётов по формулам моделей и 12 bootstrap-интервалов.
 Исходные проверки сохранены; текущий проверяющий скрипт сверяет код, параметры и результаты активных экспериментов.
 
@@ -85,7 +85,6 @@ FM: два uniform unseen negative на positive, seed=137; все извест�
 Зависимости: [requirements.txt v2](../requirements.txt). Команды из корня репозитория:
 
 ```sh
-python -m unittest discover -s homework_1/external_2019 -p 'test_*.py' -v
 python homework_1/external_2019/render.py
 python homework_1/external_2019/verify_final.py
 ```

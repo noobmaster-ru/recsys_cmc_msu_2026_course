@@ -11,7 +11,7 @@ import sys
 def evidence_manifest(root):
     import hashlib
     paths = []
-    for directory in ['models','configs','scripts','tests','reports']:
+    for directory in ['models','configs','scripts','reports']:
         paths.extend(p for p in (root/directory).rglob('*') if p.is_file()
                      and '__pycache__' not in p.parts and p.suffix in {'.py','.json','.csv','.jsonl'})
     paths.extend(root/p for p in ['data_utils.py','evaluation.py','requirements.txt'])

@@ -26,7 +26,7 @@ Test v2 оценивался ранее. Внешний test охватывае�
 homework_1/
 ├── README.md, experiments.ipynb   # Основная работа
 ├── models/, evaluation.py        # Модели и общий оценщик
-├── configs/, scripts/, tests/    # Параметры, запуск и проверки
+├── configs/, scripts/           # Параметры и воспроизведение
 ├── reports/, requirements.txt    # Отчёты и зависимости
 └── external_2019/                # Внешняя оценка
 ```

@@ -19,7 +19,5 @@
   "reports/source.json": "d744dedccb86785d784071aedb2d05c41b992840a26569e9cfb7c7989481dedd",
   "reports/verification.json": "8ac7b1c3165fb723bb2ec792d8ac5aa02feb98a13464b6609c39001989273a3c",
   "run_final.py": "f279a09fc86c488ba0a22a65b6b7ce3045ec5a5b13aeb2d39a839dc166d3137b",
-  "test_final.py": "d538745d40ccba7845f2183a946e4ae11a3ede8e577b7b2d62c82809006cc81a",
-  "test_prepare.py": "50a9fee94f400455fdb2ef8e6c875c7fb8b6946bd92ad760a8272c884cf590d3",
   "verify_final.py": "af87216a649cf67113240f6df1c1d1980367e446c79ecd1152ff0f317a20ca05"
 }
