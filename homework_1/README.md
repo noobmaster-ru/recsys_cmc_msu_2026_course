@@ -55,7 +55,7 @@ TimeSVD++ не улучшила ranking относительно статиче�
 
 ## Запуск и воспроизведение
 
-[Google Colab](https://colab.research.google.com/github/noobmaster-ru/recsys_cmc_msu_2026_course/blob/769803fd8897a09bbb416ef0938f90c2fe921876/homework_1/experiments.ipynb):
+[Google Colab](https://colab.research.google.com/github/noobmaster-ru/recsys_cmc_msu_2026_course/blob/5e3ae8facd3f42143823d9548ae1a05696f21486/homework_1/experiments.ipynb):
 «Среда выполнения → Выполнить всё». CPU; репозиторий и данные загружаются автоматически.
 Пересчитывается EDA, модельные результаты читаются из отчётов. Полное обучение — отдельной командой ниже.
 
