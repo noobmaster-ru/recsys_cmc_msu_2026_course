@@ -46,12 +46,14 @@ def main():
     def run(*args):
         subprocess.run([sys.executable,*args],cwd=target,env=env,check=True)
     run('scripts/prepare_data.py','--download')
-    # The first 32 cells contain only EDA, split creation and protocol definition.
+    # Select setup and EDA independently of Markdown cell positions.
     run('-c', "import nbformat; from nbclient import NotebookClient; from pathlib import Path; "
         "p=Path('experiments.ipynb'); n=nbformat.read(p,as_version=4); "
-        "e=nbformat.v4.new_notebook(cells=n.cells[:32],metadata=n.metadata); "
+        "indices=[i for i,c in enumerate(n.cells) if {'shared_setup','eda'}.intersection(c.metadata.get('tags',[]))]; "
+        "e=nbformat.v4.new_notebook(cells=[n.cells[i] for i in indices],metadata=n.metadata); "
         "NotebookClient(e,timeout=1200,kernel_name='python3',resources={'metadata':{'path':str(Path.cwd())}}).execute(); "
-        "n.cells[:32]=e.cells; nbformat.write(n,p)")
+        "executed=iter(e.cells); n.cells=[next(executed) if i in indices else c for i,c in enumerate(n.cells)]; "
+        "nbformat.write(n,p)")
     # Separate processes release dense EASE matrices before the next stage.
     for model in ['item_knn','ials','ease','fm','timesvdpp']:
         run(f'scripts/tune_{model}.py')
