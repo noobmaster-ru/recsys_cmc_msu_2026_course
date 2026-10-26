@@ -81,7 +81,7 @@ if summary['persistence_recovery']:
 else:
     display(Markdown('Запуск завершён без технического продолжения.'))
 verification=json.loads((P/'verification.json').read_text())
-display(pd.Series({k:verification[k] for k in ['refits_before_test_access','independent_per_user_metric_rows','independent_bootstrap_difference_intervals_verified','protected_v2_files_unchanged']},name='Проверки').to_frame())''')
+display(pd.Series({k:verification[k] for k in ['refits_before_test_access','independent_per_user_metric_rows','independent_bootstrap_difference_intervals_verified','protected_v2_files_unchanged']},name='Проверки исходного запуска').to_frame())''')
 md('''## Результаты
 
 Когорта, кандидаты и релевантность одинаковы для всех моделей.

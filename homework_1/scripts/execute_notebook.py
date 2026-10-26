@@ -11,7 +11,7 @@ from nbclient import NotebookClient
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--section', choices=['all', 'reports', 'cf', 'ials', 'ease', 'fm', 'timesvdpp', 'final', 'fm_extended'], default='reports',
+    parser.add_argument('--section', choices=['all', 'reports', 'cf', 'ials', 'ease', 'fm', 'timesvdpp', 'final'], default='reports',
                         help='reports (default): render all committed model reports; all: also recompute EDA (download data first); individual sections preserve prior outputs and block raw test IO')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
@@ -21,8 +21,6 @@ def main():
     os.environ["JUPYTER_PATH"] = os.pathsep.join(
         filter(None, (kernel_path, os.environ.get("JUPYTER_PATH"))))
     path = root / "experiments.ipynb"
-    if args.section == 'fm_extended':
-        path = root / "archive/fm_extended_v3/experiments.ipynb"
     notebook = nbformat.read(path, as_version=4)
     if args.section != 'all':
         tags = {'cf','ials','ease','fm','timesvdpp','final'} if args.section == 'reports' else {args.section}

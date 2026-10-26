@@ -1,9 +1,0 @@
-{
-  "date": "2026-10-26",
-  "protected_path": "README.md",
-  "repository_path": "homework_1/README.md",
-  "original_commit": "801e0567ad4f008d70d63fc7efc88692f125466c",
-  "original_sha256": "ea4385ff373a6c0a66c754ac2f391a3ed9763318ce362f8fdcc6c73cd203a143",
-  "current_sha256": "f59f573913a0b91603158a3defb813bb85426776809a1f0ffcb9d11e3989eaa2",
-  "scope": "README shortened; dataset/experiment naming and Colab launch instructions; scientific code and results unchanged"
-}

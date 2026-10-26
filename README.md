@@ -28,7 +28,6 @@ homework_1/
 ├── models/, evaluation.py        # Модели и общий оценщик
 ├── configs/, scripts/, tests/    # Параметры, запуск и проверки
 ├── reports/, requirements.txt    # Отчёты и зависимости
-├── archive/                      # Предыдущие эксперименты
 └── external_2019/                # Внешняя оценка
 ```
 

@@ -74,7 +74,7 @@ FM: два uniform unseen negative на positive, seed=137; все извест�
 
 Прошли четыре теста. Независимо проверены 26 862 строки персональных метрик,
 10 полнокаталожных расчётов по формулам моделей и 12 bootstrap-интервалов.
-Контрольные суммы 118 файлов v2/архива совпали.
+Исходные проверки сохранены; текущий проверяющий скрипт сверяет код, параметры и результаты активных экспериментов.
 
 [Сводка](reports/final/summary.json) · [Проверки](reports/final/verification.json) ·
 [Таблица](reports/final/comparison.csv) · [Интервалы](reports/final/bootstrap_vs_EASE.csv).
@@ -91,7 +91,7 @@ python homework_1/external_2019/verify_final.py
 ```
 
 `render.py` пересобирает ноутбук по отчётам без данных и весов.
-`verify_final.py` проверяет локальные данные, веса и выдачи без обучения.
+`verify_final.py` проверяет локальные данные, веса и выдачи без обучения; отчёт записывает в `data/posthoc_verification.json`.
 
 Полное повторение: новая копия репозитория со скриптами этого каталога, без созданных
 здесь `data/` и `reports/`; последовательно `prepare.py`, `run_final.py`, `verify_final.py`, `render.py`.

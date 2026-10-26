@@ -91,12 +91,10 @@ python scripts/reproduce.py --output ../../recsys-reproduction
 Ориентир: 16 GB RAM и 10 GB диска; одна финальная матрица EASE занимает 2,08 GiB.
 Seed=42, negative sampling=137, shuffle=43. Данные и веса исключены из Git.
 
-## Ограничения и архив
+## Ограничения
 
 Test уже использовался в v1; v2 — корректирующая повторная оценка того же holdout.
 Отбор 5-core и наличие названия учитывают полный период. Оценка ограничена известными пользователями и товарами;
 отзывы не равны показам или покупкам. Один seed; bootstrap не учитывает вариацию обучения и множественные сравнения.
 
-[v1: прежние признаки FM](archive/snapshot_v1/ARCHIVE.md) ·
-[v3: дополнительный validation-подбор FM](archive/fm_extended_v3/README.md) ·
-[Внешний test за 2019 год на Amazon Reviews 2023](external_2019/README.md).
+[Внешняя оценка за 2019 год](external_2019/README.md). Старые эксперименты доступны в истории Git.

@@ -11,9 +11,6 @@ import nbformat
 
 
 class NotebookExecutionTests(unittest.TestCase):
-    def test_fm_extended_section_preserves_all_historical_results(self):
-        self.check_section('fm_extended')
-
     def test_ials_section_preserves_old_outputs_and_blocks_test_file(self):
         self.check_section('ials')
 
@@ -48,19 +45,13 @@ class NotebookExecutionTests(unittest.TestCase):
                 'except RuntimeError:\n    blocked = True\nassert blocked\nprint("test IO blocked")',
                 metadata={'tags':[section]})
             notebook = nbformat.v4.new_notebook(cells=[setup, old, selected])
-            notebook_path = (root/'archive/fm_extended_v3/experiments.ipynb'
-                             if section == 'fm_extended' else root/'experiments.ipynb')
+            notebook_path = root/'experiments.ipynb'
             notebook_path.parent.mkdir(parents=True, exist_ok=True)
             nbformat.write(notebook, notebook_path)
-            if section == 'fm_extended':
-                nbformat.write(nbformat.v4.new_notebook(cells=[old]), root/'experiments.ipynb')
-                main_before = (root/'experiments.ipynb').read_bytes()
             run = subprocess.run([sys.executable,str(root/'scripts/execute_notebook.py'),'--section',section],
                 capture_output=True,text=True,timeout=45)
             self.assertEqual(run.returncode,0,run.stdout+run.stderr)
             executed = nbformat.read(notebook_path,as_version=4)
-            if section == 'fm_extended':
-                self.assertEqual((root/'experiments.ipynb').read_bytes(), main_before)
             self.assertEqual(executed.cells[1],old)
             self.assertIsNone(executed.cells[0].execution_count)
             self.assertIsNotNone(executed.cells[2].execution_count)

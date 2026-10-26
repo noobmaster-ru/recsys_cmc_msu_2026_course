@@ -1,9 +1,6 @@
 {
-  "documentation_policy.py": "c7d0c5b763d762e3a126576e76c83f200f7217ac4ffa1061728a03ef53cd8601",
   "prepare.py": "87efe94249e3dfd1fa31b778dfc56ccf639832aced015392244a5a57b851522a",
-  "render.py": "200652f9fca278653211eae6e88290a05f2030956f949f1d2eeb903547ecad7a",
-  "reports/documentation_check.json": "c913b8df2906f10d6e6af5c03faf75f01bc3f792beca8eca540c19110d7924f4",
-  "reports/documentation_revision.json": "d896155101bd3c25436cce1049b0a898cb4f44cf1281b2d1d9441008f0255edb",
+  "render.py": "af2bce873add240cd3d0d784522e359a9f9cb20e92b690de1903a4424174454e",
   "reports/feasibility.json": "de42709a78c20e0d47fd6db695f1644d04e781641af438caea1dace391f8750b",
   "reports/final/bootstrap_vs_EASE.csv": "dbe1d54b948303e93b529340cedaddce78ef2f41bad7fe88ac841cb298a09a8f",
   "reports/final/comparison.csv": "dd657ec6ed4ac75a9baa374ed7d60f5a69c0f7497b1a9d3cc4c1a83ddf9b0879",
@@ -12,21 +9,17 @@
   "reports/final/initial_run_source.py": "d05e3d5917f329807a368320645de9e22dfae6e6f9f6582b5af4d7a74f851760",
   "reports/final/popularity_slices.csv": "72d351c8730f1df0be5941d55861760ba98b9dee183e64af87f97d53ac477aed",
   "reports/final/recovery_plan.json": "f8c2d1dfab76ee56b00ec016db7b3379f809deb54323901af244588b15c9ca77",
-  "reports/final/report_verification.json": "cf06009d3fca022d425ea20261bd269338f48a781085640ee0c7e7da3429789e",
   "reports/final/summary.json": "6ae2709ce31c3f5fee007d8c70108b74fd2a83d4b150aa524a02c017289ef760",
   "reports/final/training_fm.csv": "489c959ac8147d0e97c80fa49bddcc2d9bf6643a6883f1032abf961e07127063",
   "reports/final/training_ials.csv": "902ce4c8012068f796d411eec05fdc00ab2afbd14586b25c6ea6de20e979be44",
   "reports/final/training_timesvdpp.csv": "fde351140edb75c62d412b35be6d6c74d64ae982bf5ae03cfd63df964fbb1195",
   "reports/final/verification.json": "358957055d464ac085d75427349565c0d9b10268d03648487b7a471176ab48ac",
-  "reports/notebook_revision.json": "8bbdfde75cd738e7288878cd86a98e8748e76b0ee35303507dd6f63b773096b9",
   "reports/protocol.json": "c7eef6d4a1773eb1e10cd5f1f271adcf93d29d86edaf4db634526eeb11b39a81",
   "reports/selection_plan.json": "78e98d0a86a507988191ed4e02ed944cdc06101d360c7e9571687f5f1385d794",
   "reports/source.json": "d744dedccb86785d784071aedb2d05c41b992840a26569e9cfb7c7989481dedd",
   "reports/verification.json": "8ac7b1c3165fb723bb2ec792d8ac5aa02feb98a13464b6609c39001989273a3c",
   "run_final.py": "f279a09fc86c488ba0a22a65b6b7ce3045ec5a5b13aeb2d39a839dc166d3137b",
-  "test_documentation.py": "9013d376d0b15ee852d82377b60644de3005368518f4e576074b832bd21b16fa",
   "test_final.py": "d538745d40ccba7845f2183a946e4ae11a3ede8e577b7b2d62c82809006cc81a",
   "test_prepare.py": "50a9fee94f400455fdb2ef8e6c875c7fb8b6946bd92ad760a8272c884cf590d3",
-  "verify.py": "f7edfe43dd2847dbbfcca9be059736e4797403fefbff03f2c30e44b321b1f150",
-  "verify_final.py": "3849959582f5668179c691c5caf33239d11119aac07d64cd5839c86b47a93cfb"
+  "verify_final.py": "af87216a649cf67113240f6df1c1d1980367e446c79ecd1152ff0f317a20ca05"
 }
