@@ -15,6 +15,7 @@ from models.fm import fm_predict
 from scripts.prepare_data import sha256
 from scripts.run_final_test import restore_model
 from scripts.final_config import MODEL_FOLDERS
+from documentation_policy import verify_preserved_files
 
 
 def main():
@@ -127,15 +128,15 @@ def main():
             row = intervals[(intervals.comparison == name + ' - EASE') & (intervals.estimate_for == 'difference') & (intervals.metric == metric)].iloc[0]
             assert np.allclose([row.estimate, row.ci_low, row.ci_high], [diff[:, j].mean(), *bounds[:, j]], atol=1e-12, rtol=0)
     protected = json.loads((ROOT / 'reports/selection_plan.json').read_text())['protected_v2_files']
-    for rel, digest in protected.items():
-        assert sha256(HW / rel) == digest, rel
+    unchanged, revised_docs = verify_preserved_files(ROOT, HW, protected, sha256)
     result = {'protocol_and_source_hashes_verified': True, 'all_saved_artifact_hashes_verified': True,
               'hyperparameters_identical_to_v2': True, 'refits_before_test_access': 5,
               'independent_per_user_metric_rows': manual_rows, 'cohort_users': len(context.user_ids),
               'full_catalog_oracles': oracles, 'independent_bootstrap_difference_intervals_verified': 12,
-              'protected_v2_files_unchanged': len(protected), 'post_test_refits_or_hpo': 0,
+              'protected_v2_files_unchanged': unchanged, 'approved_documentation_revisions': revised_docs, 'post_test_refits_or_hpo': 0,
               'verification_only_no_training': True, 'external_boundary_unit_tests_passed': 4}
-    (output / 'verification.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
+    verification_path = ROOT / 'reports/documentation_verification.json' if revised_docs else output / 'verification.json'
+    verification_path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 

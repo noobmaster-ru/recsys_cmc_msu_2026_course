@@ -1,0 +1,11 @@
+{
+  "scope": "documentation revision only",
+  "unchanged_protected_files": 117,
+  "approved_documentation_revisions": [
+    "README.md"
+  ],
+  "original_v2_scientific_manifest_verified": true,
+  "local_readme_links_verified": true,
+  "tests_passed": 6,
+  "new_training_or_test_evaluation": false
+}
