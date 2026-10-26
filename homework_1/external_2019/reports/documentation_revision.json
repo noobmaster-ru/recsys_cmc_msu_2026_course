@@ -4,6 +4,6 @@
   "repository_path": "homework_1/README.md",
   "original_commit": "801e0567ad4f008d70d63fc7efc88692f125466c",
   "original_sha256": "ea4385ff373a6c0a66c754ac2f391a3ed9763318ce362f8fdcc6c73cd203a143",
-  "current_sha256": "5879326187a5e859813a336f4ee4a992deec5062645c7a6a04237468bf40383e",
-  "scope": "Documentation only: concise README and clarification of experiment version versus dataset release; no model, parameter, protocol, data, notebook, or metric changes"
+  "current_sha256": "3fbbea3a608db08de8c6536f90213decadb38969e44edf53cf8e6707c7faed74",
+  "scope": "README shortened; dataset/experiment naming and Colab launch instructions; scientific code and results unchanged"
 }

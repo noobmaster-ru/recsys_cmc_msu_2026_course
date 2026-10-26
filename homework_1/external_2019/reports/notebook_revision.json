@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-26",
+  "protected_path": "experiments.ipynb",
+  "repository_path": "homework_1/experiments.ipynb",
+  "original_commit": "801e0567ad4f008d70d63fc7efc88692f125466c",
+  "original_sha256": "fde424572d088378708e93221cf1ca33738b4b7418230e8e3548357760f73d7d",
+  "current_sha256": "5f0c1b6d803bcf75db11881b02fafd29dce8d804b7467f135a3ef44b3206a444",
+  "scope": "Colab startup, launch instructions, and preservation of published report files; same cell indices, models, parameters, splits and saved model results"
+}

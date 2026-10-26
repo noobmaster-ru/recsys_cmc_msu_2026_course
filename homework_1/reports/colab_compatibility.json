@@ -1,0 +1,15 @@
+{
+  "acceptance_scope": "clean clone + real data download + full notebook in fresh kernel, simulated Colab environment flag; not a hosted Google Colab runtime",
+  "executed_code_cells": 66,
+  "embedded_figures": 41,
+  "error_outputs": 0,
+  "published_reports_unchanged": 115,
+  "training_performed": false,
+  "bootstrap_unit_tests_passed": 5,
+  "source_commit": "3cb3e93bed3fb789ed01c9035a36643d2fbc4076",
+  "bootstrap_source_sha256": "d7e19e3e7d80eaaf5058eeb492f5d7663ea0ff8954594bb60dcb7d1494c30795",
+  "notebook_sha256": "5f0c1b6d803bcf75db11881b02fafd29dce8d804b7467f135a3ef44b3206a444",
+  "main_unit_tests_passed": 67,
+  "external_checks_passed": 7,
+  "hosted_colab_runtime_test": "requires Google sign-in in available browser; notebook opens, runtime execution not performed"
+}

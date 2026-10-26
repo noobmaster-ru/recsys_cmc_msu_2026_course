@@ -55,7 +55,11 @@ TimeSVD++ не улучшила ranking относительно статиче�
 
 ## Запуск и воспроизведение
 
-Python 3.13. Из корня репозитория:
+[Google Colab](https://colab.research.google.com/github/noobmaster-ru/recsys_cmc_msu_2026_course/blob/main/homework_1/experiments.ipynb):
+«Среда выполнения → Выполнить всё». CPU; репозиторий и данные загружаются автоматически.
+Пересчитывается EDA, модельные результаты читаются из отчётов. Полное обучение — отдельной командой ниже.
+
+Локально (Python 3.13), из корня репозитория:
 
 ```sh
 cd homework_1

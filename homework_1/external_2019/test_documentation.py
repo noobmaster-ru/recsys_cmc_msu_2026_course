@@ -40,6 +40,20 @@ class DocumentationRevisionTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'Only the documented README'):
                 verify_preserved_files(root,hw,protected,sha)
 
+    def test_notebook_revision_does_not_allow_other_file_changes(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root,hw,protected,_=self.fixture(temp)
+            (hw/'experiments.ipynb').write_text('original notebook')
+            protected['experiments.ipynb']=sha(hw/'experiments.ipynb')
+            (hw/'experiments.ipynb').write_text('Colab-compatible notebook')
+            entry={'protected_path':'experiments.ipynb','repository_path':'homework_1/experiments.ipynb',
+                   'original_sha256':protected['experiments.ipynb'],'current_sha256':sha(hw/'experiments.ipynb')}
+            (root/'reports/notebook_revision.json').write_text(json.dumps(entry))
+            self.assertEqual(verify_preserved_files(root,hw,protected,sha),(1,['README.md','experiments.ipynb']))
+            (hw/'model.py').write_text('changed model')
+            with self.assertRaisesRegex(ValueError,'Protected file changed'):
+                verify_preserved_files(root,hw,protected,sha)
+
 
 if __name__=='__main__':
     unittest.main()

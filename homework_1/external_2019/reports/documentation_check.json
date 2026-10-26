@@ -1,11 +1,13 @@
 {
-  "scope": "documentation revision only",
-  "unchanged_protected_files": 117,
+  "scope": "README and notebook Colab compatibility; scientific sources and results unchanged",
+  "unchanged_protected_files": 116,
   "approved_documentation_revisions": [
-    "README.md"
+    "README.md",
+    "experiments.ipynb"
   ],
   "original_v2_scientific_manifest_verified": true,
   "local_readme_links_verified": true,
-  "tests_passed": 6,
+  "main_unit_tests_passed": 67,
+  "external_unit_tests_passed": 7,
   "new_training_or_test_evaluation": false
 }
