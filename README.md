@@ -2,36 +2,27 @@
 
 **Козлов Кирилл Андреевич.**
 
-## Домашнее задание 1
+## Домашние задания
 
-ItemKNN, iALS, EASE, FM и timeSVD++ с нуля.
-
-| Эксперимент | Материалы |
+| Работа | Материалы |
 |---|---|
-| Amazon Reviews 2018 Video Games — основной, v2 | [README](homework_1/README.md) · [Ноутбук](homework_1/experiments.ipynb) · [Google Colab](https://colab.research.google.com/github/noobmaster-ru/recsys_cmc_msu_2026_course/blob/20d4d57cee8cd279fa86deceba8d987572db17bb/homework_1/experiments.ipynb) |
-| Amazon Reviews 2023 Video Games — внешний test за 2019 год | [README](homework_1/external_2019/README.md) · [Ноутбук](homework_1/external_2019/experiments.ipynb) |
+| №1: ItemKNN, iALS, EASE, FM, timeSVD++ | [README](homework_1/README.md) · [Ноутбук](homework_1/experiments.ipynb) · [Colab](https://colab.research.google.com/github/noobmaster-ru/recsys_cmc_msu_2026_course/blob/main/homework_1/experiments.ipynb) |
 
-v1/v2 — версии эксперимента на данных 2018 года. Внешняя оценка использует настройки v2.
-Test v2 оценивался ранее. Внешний test охватывает 4 477 пользователей и 2,36% положительных событий категории.
-
-## Запуск в Colab
-
-Открыть ссылку **Google Colab** выше → **Среда выполнения → Выполнить всё**. Достаточно CPU.
-Первая ячейка загрузит репозиторий, зависимости и данные.
-Выполняются EDA и вывод сохранённых результатов моделей. Полное обучение — по [инструкции](homework_1/README.md#запуск-и-воспроизведение).
+Amazon Reviews 2018 Video Games. Полный запуск ноутбука: данные, EDA, подбор на validation, обучение и test-метрики.
+[Отдельная внешняя оценка за 2019 год](https://github.com/noobmaster-ru/recsys_cmc_msu_2026_course/tree/7191c2e526c7f198871bbca56474f77c73d66bbe/homework_1/external_2019) — Amazon Reviews 2023, параметры v2.
 
 ## Структура
 
 ```text
 homework_1/
-├── README.md, experiments.ipynb   # Основная работа
-├── models/, evaluation.py        # Модели и общий оценщик
-├── configs/, scripts/           # Параметры и воспроизведение
-├── reports/, requirements.txt    # Отчёты и зависимости
-└── external_2019/                # Внешняя оценка
+├── experiments.ipynb
+├── models/
+├── data_utils.py
+├── evaluation.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+└── ressys_Домашнее задание 1.pdf
 ```
 
-[Условие](<homework_1/ressys_Домашнее задание 1.pdf>) ·
-[Источник 2018](https://cseweb.ucsd.edu/~jmcauley/datasets/amazon_v2/) ·
-[Источник 2023](https://amazon-reviews-2023.github.io/main.html).
-Данные, веса и персональные выдачи исключены из Git.
+Данные и результаты запусков — вне Git. [Условие](<homework_1/ressys_Домашнее задание 1.pdf>).

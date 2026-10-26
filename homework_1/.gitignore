@@ -18,7 +18,3 @@ __pycache__/
 *.pth
 *.pkl
 *.joblib
-
-# Figures are embedded in the notebooks and regenerated on execution
-/reports/figures/
-/external_2019/reports/figures/
