@@ -9,7 +9,7 @@ import subprocess
 import sys
 
 COLAB_REPOSITORY = 'https://github.com/noobmaster-ru/recsys_cmc_msu_2026_course.git'
-COLAB_BASE_COMMIT = '3cb3e93bed3fb789ed01c9035a36643d2fbc4076'
+COLAB_BASE_COMMIT = 'eab6062f6ff9d3205bed9d5bfb8e568869397231'
 
 
 def in_google_colab():
